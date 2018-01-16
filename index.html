@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/16/stateless/" itemprop="url">Fragment Transactions & Activity State Loss(����)</a></h1>
+                <a class="post-title-link" href="/2018/01/16/stateless/" itemprop="url">Fragment Transactions & Activity State Loss(译文)</a></h1>
         
 
         <div class="post-meta">
@@ -300,14 +300,14 @@
       
         
           
-            <p>���¶�ջ׷�ٺ��쳣��Ϣ�Դ�Honeycomb’s���ڰ汾������������StackOverflow:</p>
+            <p>以下堆栈追踪和异常信息自从Honeycomb’s初期版本以来就困扰着StackOverflow:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: Can not perform <span class="keyword">this</span> action after onSaveInstanceState</span><br><span class="line">    at android.support.v4.app.FragmentManagerImpl.checkStateLoss(FragmentManager.java:<span class="number">1341</span>)</span><br><span class="line">    at android.support.v4.app.FragmentManagerImpl.enqueueAction(FragmentManager.java:<span class="number">1352</span>)</span><br><span class="line">    at android.support.v4.app.BackStackRecord.commitInternal(BackStackRecord.java:<span class="number">595</span>)</span><br><span class="line">    at android.support.v4.app.BackStackRecord.commit(BackStackRecord.java:<span class="number">574</span>)</span><br></pre></td></tr></table></figure>
-<p>��ƪ���½������Ϊʲô�Լ���ʱ�׳��쳣, Ȼ���ܽ�һЩ����������ȷ�����Ӧ�ó����ڱ���.</p>
-<h2 id="Ϊʲo�׳��쳣"><a href="#Ϊʲo�׳��쳣" class="headerlink" title="Ϊʲô�׳��쳣?"></a><strong>Ϊʲô�׳��쳣?</strong></h2><p>����쳣���׳�����Ϊ�㳢����Activity��״̬��save֮��, commitһ��FragmentTransaction, �ŵ���һ������ΪActivity״̬��ʧ������.��������, ��������ϸ�������ʵ�ʵĺ���֮ǰ, �����������������ڵ���onSaveInstanceState()ʱ�ڱ�������ʲô. ����������һƪ���� <a href="https://www.androiddesignpatterns.com/2013/08/binders-death-recipients.html" target="_blank" rel="noopener">Binders &amp; Death Recipients</a>�����������۵�����, AndroidӦ����Android runtime�����м����޷������Լ�������(����ע: AndroidӦ�ÿ����ƺ�����ͨ��, ���ս�ϵͳ���ڽ��Ϳ����ɱ��Ϳ����߿���������ʵ�ֶ��Ƿ���ȥӦ�����ӵ�����). Androidϵͳ��Ȩ���κ�ʱ���ս�������ͷ��ڴ�,����̨Activity������˶�����û�κξ������ɱ��.</p>
-<p>Ϊ��ȷ�����ֶ��û����������ص�, ��ʱ���ȶ�����Ϊ,Framework����Activity��������ƻ�ǰ, ���ÿ��Activityһ�������������onSaveInstanceState()����ȥ��������״̬. �������״̬�Իָ�ʱ, ����Activity�Ƿ�ϵͳɱ��,�û���о���ǰ̨Activity�ͺ�̨Activity֮�����޷��л���,��framework���onSaveInstanceState()ʱ, ������һ����Bundle����ķ�����ʹActivity��������״̬, ��¼�ڲ�Dialog, Fragment��View��״̬.����������ʱ, ϵͳͨ��Binder�ӿڰ�װBundle����System Server����, �����ﱻ��ȫ�ش��.��ϵͳ�Ժ�������´���Activityʱ, �ᷢ���Ǹ���ͬ��Bundle����Ӧ�ó���, �Ա��������ָ�Activity��ȥ��״̬.</p>
-<p>��ôΪʲô���׳��쳣��? �ð�, ����Դ������һ����ʵ, ����ЩBundle���󶼴�����onSaveInstanceState()������ʱActivity��һ�ſ���, ���˶���.����ζ�ŵ����ڵ���onSaveInstanceState()֮�����е�FragmentTransaction# commit(), transaction�������û�м�ס����Ϊ������û�б���¼ΪActivity״̬��һ����.���û��ĽǶȿ�, transaction��������ʧ, ���������UI״̬��ʧ. Ϊ���û�����, Android��ϧһ�д��۱���״̬��ʧ, �κ�ʱ��Ҫ��������UI��ʧʱ�ͻ���׳�һ��IllegalStateException�쳣.</p>
-<h3 id="ʲoʱ���׳��쳣"><a href="#ʲoʱ���׳��쳣" class="headerlink" title="ʲôʱ���׳��쳣?"></a><strong>ʲôʱ���׳��쳣?</strong></h3><p>�����֮ǰ����������쳣���������Ѿ�ע�⵽���ڲ�ͬ��ƽ̨�汾�У�������ʱ�����в�ͬ�����磬�����ܷ��ֽϾɵ��豸���������׳��쳣������ʹ�õ�����֧�ֿ�ʱӦ�ó����ʹ�ùٷ������ʱ�����ױ�������Щ΢С�Ĳ�һ�µ����������Ϊ֧�ֿ��Ǵ���ģ����ܱ����Ρ� ���ǣ���Щ����ͨ���ǲ���ȷ�ġ�</p>
-<p>֮���Դ�����Щ΢С�Ĳ�һ��֮��������Ϊ��Honeycomb�е�Activity�������ڵ��ش�ı䡣��Honeycomb֮ǰ����ڱ���֮ͣǰ���ᱻ��Ϊkillable������ζ��onSaveInstanceState������onPause����֮ǰ���������á�Ȼ������Honeycomb��ʼ���ֻ����ֹͣ(ָstop, ����ָ��ͣpause)֮��ű���Ϊ�ǿ�ɱ���ģ�����ζ��onSaveInstanceState�������ڽ���onStop����֮ǰ��������onPause����֮ǰ�����á���Щ�����ܽ����±��У�</p>
+<p>这篇文章将会解释为什么以及何时抛出异常, 然后总结一些建议有助于确保你的应用程序不在奔溃.</p>
+<h2 id="为什么抛出异常"><a href="#为什么抛出异常" class="headerlink" title="为什么抛出异常?"></a><strong>为什么抛出异常?</strong></h2><p>这个异常被抛出是因为你尝试在Activity的状态被save之后, commit一个FragmentTransaction, 才导致一个被称为Activity状态丢失的现象.不管怎样, 在我们详细讨论这个实际的含义之前, 让我们首先来看看在调用onSaveInstanceState()时在背后发生了什么. 正如我在上一篇关于 <a href="https://www.androiddesignpatterns.com/2013/08/binders-death-recipients.html" target="_blank" rel="noopener">Binders &amp; Death Recipients</a>的文章所讨论的那样, Android应用在Android runtime环境中几乎无法控制自己的命运(译者注: Android应用开发似乎这是通病, 但收紧系统利于降低开发成本和开发者快速面向功能实现而非分心去应付庞杂的事情). Android系统有权在任何时候终结进程以释放内存,而后台Activity可能因此而几乎没任何警告而被杀死.</p>
+<p>为了确保这种对用户来讲是隐藏的, 有时不稳定的行为,Framework层在Activity变得易受破坏前, 会给每个Activity一个机会调用它的onSaveInstanceState()方法去保存它的状态. 当保存的状态稍恢复时, 无论Activity是否被系统杀死,用户会感觉在前台Activity和后台Activity之间是无缝切换的,当framework层调onSaveInstanceState()时, 它传递一个含Bundle对象的方法来使Activity保存它的状态, 记录内部Dialog, Fragment和View的状态.当方法返回时, 系统通过Binder接口包装Bundle对象到System Server进程, 在那里被安全地存放.在系统稍后决定重新创建Activity时, 会发送那个相同的Bundle对象到应用程序, 以便它用来恢复Activity过去的状态.</p>
+<p>那么为什么会抛出异常呢? 好吧, 问题源于这样一个事实, 即这些Bundle对象都代表了onSaveInstanceState()被调用时Activity的一张快照, 仅此而已.这意味着当你在调用onSaveInstanceState()之后所有的FragmentTransaction# commit(), transaction事务操作没有记住是因为它从来没有被记录为Activity状态的一部分.从用户的角度看, transaction操作将丢失, 导致意外的UI状态丢失. 为了用户体验, Android不惜一切代价避免状态丢失, 任何时候要发生意外UI丢失时就会简单抛出一个IllegalStateException异常.</p>
+<h3 id="什么时候抛出异常"><a href="#什么时候抛出异常" class="headerlink" title="什么时候抛出异常?"></a><strong>什么时候抛出异常?</strong></h3><p>如果您之前遇到过这个异常，您可能已经注意到，在不同的平台版本中，引发的时机略有不同。例如，您可能发现较旧的设备倾向于少抛出异常，或者使用第三方支持库时应用程序比使用官方框架类时更容易崩溃。这些微小的不一致导致许多人认为支持库是错误的，不能被信任。 但是，这些假设通常是不正确的。</p>
+<p>之所以存在这些微小的不一致之处，是因为对Honeycomb中的Activity生命周期的重大改变。在Honeycomb之前，活动在被暂停之前不会被视为killable，这意味着onSaveInstanceState（）在onPause（）之前被立即调用。然而，从Honeycomb开始，活动只有在停止(指stop, 不是指暂停pause)之后才被认为是可杀死的，这意味着onSaveInstanceState（）现在将在onStop（）之前而不是在onPause（）之前被调用。这些差异总结在下表中：</p>
 <table>
 <thead>
 <tr>
@@ -328,13 +328,13 @@
 <td>NO</td>
 </tr>
 <tr>
-<td>onSaveInstanceState(Bundle) is guaranteed to be called before��</td>
+<td>onSaveInstanceState(Bundle) is guaranteed to be called before…</td>
 <td>onPause()</td>
 <td>onStop()</td>
 </tr>
 </tbody>
 </table>
-<p>���ڶ�Activity����������������΢���ģ�֧�ֿ���ʱ��Ҫ����ƽ̨�汾���ı�����Ϊ�����磬��Honeycomb �豸�������ϰ汾�У�ÿ����onSaveInstanceState����֮�����commit�������濪����״̬��ʧ�Ѿ�������Ȼ����ÿ�η����������ʱ���׳�һ���쳣������Honeycomb ֮ǰ�汾�豸��˵�����ǵ�������̫ǿ�ˣ���Ϊ���ǵ�onSaveInstanceState����������Activity�����������е��õ�ʱ��Ҫ��ö࣬��˸������ܵ������״̬��ʧ����в��Android�ŶӲ��ò�������Э��Ϊ�˸��õ���ɰ汾��ƽ̨���н������Ͼɵ��豸��������onPause������onStop����֮����ܵ��µ�����״̬��ʧ���±��ܽ�������ƽ̨��֧�ֿ����Ϊ��</p>
+<p>由于对Activity生命周期所做的轻微更改，支持库有时需要根据平台版本来改变其行为。例如，在Honeycomb 设备及其以上版本中，每次在onSaveInstanceState（）之后调用commit（）警告开发者状态丢失已经发生。然而，每次发生这种情况时都抛出一个异常，对于Honeycomb 之前版本设备来说，它们的限制性太强了，因为它们的onSaveInstanceState（）方法在Activity的生命周期中调用的时间要早得多，因此更容易受到意外的状态丢失的威胁。Android团队不得不做出妥协：为了更好地与旧版本的平台进行交互，较旧的设备必须忍受onPause（）和onStop（）之间可能导致的意外状态丢失。下表总结了两种平台上支持库的行为：</p>
 <table>
 <thead>
 <tr>
@@ -361,28 +361,28 @@
 </tr>
 </tbody>
 </table>
-<h3 id="��o��������쳣"><a href="#��o��������쳣" class="headerlink" title="��ô��������쳣?"></a><strong>��ô��������쳣?</strong></h3><p>һ����������ʵ�ʷ��������飬����״̬�Ķ�ʧ�ͱ�������˺ܶࡣ������Ѿ�����ƪ�����ж�����ô�࣬ϣ�����ܸ��õ����֧�ֿ�Ĺ���ԭ���Լ�Ϊʲô����Ӧ�ó���ʧ״̬�Ƿǳ���Ҫ�ġ�������ҵ���ƪ������Ϊ��Ѱ��һ�������޸�����ô���������Ӧ�ó�����ʹ��FragmentTransactions��ʱ�򣬼�ע�����һЩ���飺</p>
+<h3 id="怎么避免这个异常"><a href="#怎么避免这个异常" class="headerlink" title="怎么避免这个异常?"></a><strong>怎么避免这个异常?</strong></h3><p>一旦你明白了实际发生的事情，避免活动状态的丢失就变得容易了很多。如果你已经在这篇文章中读了这么多，希望你能更好地理解支持库的工作原理，以及为什么避免应用程序丢失状态是非常重要的。如果你找到这篇文章是为了寻找一个快速修复，那么当你在你的应用程序中使用FragmentTransactions的时候，记注下面的一些建议：</p>
 <ul>
-<li><strong>��Activity�������ڷ������ύ����ʱҪС�ġ�</strong> �����Ӧ�ó���ֻ���ڵ�һ�ε���onCreate����ʱ��/����Ӧ�û�����ʱ���ύ������˲��������κ����⡣���ǣ���������ʼð�ս�������Activity�������ڷ�������onActivityResult������onStart������onResume��������������е㼬�֡����磬����Ӧ����FragmentActivity��onResume�����������ύ������Ϊ��ĳЩ����£������ڻָ��״̬֮ǰ���ø÷������й���ϸ��Ϣ��������ĵ������������Ӧ�ó�����Ҫ�ڳ�onCreate����֮���Activity�������ڷ������ύ��������FragmentActivity��onResumeFragments������Activity��onPostResume������ִ�С������ַ�����֤��Activity�ָ���ԭ����״̬֮�󱻵��ã��Ӷ�������״̬һ��ʧ�Ŀ����ԡ� ����Ϊ���������һ���һ�����ӣ���鿴�Ҷ����<a href="http://stackoverflow.com/q/16265733/844882" target="_blank" rel="noopener">StackOverflow question</a> �Ļش��˽�����ύFragmentTransactions����Ӧ��Activity��onActivityResult���������ĵ��ã���</li>
-<li><strong>�������첽�ص�������ִ������ </strong>  ��������õķ�������AsyncTask��onPostExecute������LoaderManager.LoaderCallbacks��onLoadFinished������ ����Щ������ִ������������ǣ��ڵ�������ʱ�����ǲ��˽�Activity�������ڵĵ�ǰ״̬�� ���磬��������һϵ���¼���</li>
+<li><strong>在Activity生命周期方法中提交事务时要小心。</strong> 大多数应用程序只会在第一次调用onCreate（）时和/或响应用户输入时才提交事务，因此不会面临任何问题。但是，随着事务开始冒险进入其他Activity生命周期方法，如onActivityResult（），onStart（）和onResume（），事情会变得有点棘手。例如，您不应该在FragmentActivity＃onResume（）方法内提交事务，因为在某些情况下，可以在恢复活动状态之前调用该方法（有关详细信息，请参阅文档）。如果您的应用程序需要在除onCreate（）之外的Activity生命周期方法中提交事务，则在FragmentActivity＃onResumeFragments（）或Activity＃onPostResume（）中执行。这两种方法保证在Activity恢复到原来的状态之后被调用，从而避免了状态一起丢失的可能性。 （作为如何做到这一点的一个例子，请查看我对这个<a href="http://stackoverflow.com/q/16265733/844882" target="_blank" rel="noopener">StackOverflow question</a> 的回答，了解如何提交FragmentTransactions以响应对Activity＃onActivityResult（）方法的调用）。</li>
+<li><strong>避免在异步回调方法中执行事务。 </strong>  这包括常用的方法，如AsyncTask＃onPostExecute（）和LoaderManager.LoaderCallbacks＃onLoadFinished（）。 在这些方法中执行事务的问题是，在调用它们时，他们不了解Activity生命周期的当前状态。 例如，考虑以下一系列事件：</li>
 </ul>
 <ol>
-<li><p>һ���ִ��һ��AsyncTask��</p>
+<li><p>一个活动执行一个AsyncTask。</p>
 </li>
-<li><p>�û����¡�Home���������»��onSaveInstanceState������onStop�������������á�</p>
+<li><p>用户按下“Home”键，导致活动的onSaveInstanceState（）和onStop（）方法被调用。</p>
 </li>
-<li><p>AsyncTask��ɲ�����onPostExecute����������֪��Activity�Ѿ�ֹͣ��</p>
+<li><p>AsyncTask完成并调用onPostExecute（），但不知道Activity已经停止。</p>
 </li>
-<li><p>FragmentTransaction��onPostExecute���������ڱ��ύ�������쳣���׳���</p>
+<li><p>FragmentTransaction在onPostExecute（）方法内被提交，导致异常被抛出。</p>
 </li>
 </ol>
-<p>ͨ��������Щ����±����쳣����÷����Ǽ򵥵ر������첽�ص�������һ���ύ���� Google����ʦ�ƺ�Ҳͬ����һ�۵㡣����Android������С�����ƪ���£�Android�Ŷ���Ϊ�����첽�ص��������ύFragmentTransaction���µ��û��������Ҫ�仯���ܻ���û�������ɲ���Ӱ�졣�������Ӧ�ó�����Ҫ����Щ�ص�������ִ�����񣬲���û�м򵥵ķ�������֤��onSaveInstanceState����֮�󲻻���ûص�������ܲ��ò�������ʹ��commitAllowingStateLoss������������ܷ�����״̬��ʧ�� ���������������StackOverflow���ӣ��˽������ʾ��<a href="http://stackoverflow.com/q/8040280/844882" target="_blank" rel="noopener">����</a> and <a href="http://stackoverflow.com/q/7992496/844882" target="_blank" rel="noopener">����</a>����</p>
+<p>通常，在这些情况下避免异常的最好方法是简单地避免在异步回调方法中一起提交事务。 Google工程师似乎也同意这一观点。根据Android开发者小组的这篇文章，Android团队认为，从异步回调方法中提交FragmentTransaction导致的用户界面的主要变化可能会对用户体验造成不利影响。如果您的应用程序需要在这些回调方法中执行事务，并且没有简单的方法来保证在onSaveInstanceState（）之后不会调用回调，你可能不得不求助于使用commitAllowingStateLoss（）并处理可能发生的状态丢失。 （另请参阅这两个StackOverflow帖子，了解更多提示，<a href="http://stackoverflow.com/q/8040280/844882" target="_blank" rel="noopener">这里</a> and <a href="http://stackoverflow.com/q/7992496/844882" target="_blank" rel="noopener">这里</a>）。</p>
 <ul>
-<li><strong>commitAllowingStateLoss������ʹ��ֻ��Ϊ�����ֶΡ� </strong>  ����commit������commitAllowingStateLoss����֮���Ψһ�����ǣ��������״̬��ʧ�����߲����׳��쳣��<br> ͨ��������㲻����ʹ�����ַ�������Ϊ����ζ���п��ܳ���״̬��ʧ�� ��Ȼ�����õĽ�������Ǳ��ȷ���ڱ���Activity״̬֮ǰ����commit��������Ϊ���������õ��û����顣�����޷�����״̬��ʧ�Ŀ����ԣ�����Ӧʹ��commitAllowingStateLoss������</li>
+<li><strong>commitAllowingStateLoss（）的使用只作为最后的手段。 </strong>  调用commit（）和commitAllowingStateLoss（）之间的唯一区别是，如果发生状态丢失，后者不会抛出异常。<br> 通常情况下你不会想使用这种方法，因为这意味着有可能出现状态损失。 当然，更好的解决方案是编程确保在保存Activity状态之前调用commit（），因为这会带来更好的用户体验。除非无法避免状态丢失的可能性，否则不应使用commitAllowingStateLoss（）。</li>
 </ul>
-<p>ϣ����Щ�����ܰ����������ȥ�������쳣���κ����⡣ �������Ȼ�����鷳������<a href="http://stackoverflow.com/" target="_blank" rel="noopener">StackOverflow</a>�������⣬��������������з������ӣ��ҿ��Կ�����:)</p>
-<p>һ���������л�����Ķ�, ��������κ������������ۡ� ��������úܰ�Ļ����벻Ҫ����+1������ͣ�����Google+�Ϸ�����ƪ���£�</p>
-<p>����ע: �����Ƿ����<a href="https://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html" target="_blank" rel="noopener">��ƪ��</a>, ����˵�������ܽ�Fragment��������쳣�Ĵ���, ����Ҳ�ܶ�ͬ�з���, ���Ǵ��ǻ����д����Һ�ǿ��֢. �ʱ��Ľ���������У����������Сʱ(Ц��..Ӣ��̫��), �ﵽ��������ĳ̶�. ����㿴�������»��ǲ�����ô����, ��������ʾ��, ��Ҫ�ǿ���Activity��������!!! �����������������봦�ڰ�ȫ״̬, Ȼ����ȥ����. ������ǲ�֪�������д, email��ϵ��siesielee@gmail.com</p>
+<p>希望这些建议能帮助您解决过去遇到此异常的任何问题。 如果您仍然遇到麻烦，请在<a href="http://stackoverflow.com/" target="_blank" rel="noopener">StackOverflow</a>发布问题，并在下面的评论中发布链接，我可以看看。:)</p>
+<p>一如既往，感谢您的阅读, 如果您有任何问题留下评论。 如果您觉得很棒的话，请不要忘记+1这个博客，并在Google+上分享这篇文章！</p>
+<p>译者注: 此文是翻译的<a href="https://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html" target="_blank" rel="noopener">这篇文</a>, 可以说是最先总结Fragment事务操作异常的大神, 国内也很多同行翻译, 但是大都是机翻有错误我很强迫症. 故本文借助机翻并校正了两三个小时(笑哭..英文太烂), 达到了我满意的程度. 如果你看完了文章还是不懂怎么操作, 我这里提示下, 主要是考虑Activity生命周期!!! 所以你的事务操作必须处于安全状态, 然后再去操作. 如果还是不知代码如何写, email联系我siesielee@gmail.com</p>
 
           
         
