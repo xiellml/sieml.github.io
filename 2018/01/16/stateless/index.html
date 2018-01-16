@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="translation," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="���¶�ջ׷�ٺ��쳣��Ϣ�Դ�Honeycomb’s���ڰ汾������������StackOverflow: 12345java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState    at android.support.v4.app.FragmentManagerImp">
+<meta name="keywords" content="translation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fragment Transactions &amp; Activity State Loss(����)">
+<meta property="og:url" content="http://yoursite.com/2018/01/16/stateless/index.html">
+<meta property="og:site_name" content="Sand with the Wind">
+<meta property="og:description" content="���¶�ջ׷�ٺ��쳣��Ϣ�Դ�Honeycomb’s���ڰ汾������������StackOverflow: 12345java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState    at android.support.v4.app.FragmentManagerImp">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-01-16T13:00:50.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fragment Transactions &amp; Activity State Loss(����)">
+<meta name="twitter:description" content="���¶�ջ׷�ٺ��쳣��Ϣ�Դ�Honeycomb’s���ڰ汾������������StackOverflow: 12345java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState    at android.support.v4.app.FragmentManagerImp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/16/stateless/"/>
+
+
+
+
+
+  <title>Fragment Transactions & Activity State Loss(����) | Sand with the Wind</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sand with the Wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/stateless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Fragment Transactions & Activity State Loss(����)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-16T20:58:00+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>���¶�ջ׷�ٺ��쳣��Ϣ�Դ�Honeycomb’s���ڰ汾������������StackOverflow:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: Can not perform <span class="keyword">this</span> action after onSaveInstanceState</span><br><span class="line">    at android.support.v4.app.FragmentManagerImpl.checkStateLoss(FragmentManager.java:<span class="number">1341</span>)</span><br><span class="line">    at android.support.v4.app.FragmentManagerImpl.enqueueAction(FragmentManager.java:<span class="number">1352</span>)</span><br><span class="line">    at android.support.v4.app.BackStackRecord.commitInternal(BackStackRecord.java:<span class="number">595</span>)</span><br><span class="line">    at android.support.v4.app.BackStackRecord.commit(BackStackRecord.java:<span class="number">574</span>)</span><br></pre></td></tr></table></figure>
+<p>��ƪ���½������Ϊʲô�Լ���ʱ�׳��쳣, Ȼ���ܽ�һЩ����������ȷ�����Ӧ�ó����ڱ���.</p>
+<h2 id="Ϊʲo�׳��쳣"><a href="#Ϊʲo�׳��쳣" class="headerlink" title="Ϊʲô�׳��쳣?"></a><strong>Ϊʲô�׳��쳣?</strong></h2><p>����쳣���׳�����Ϊ�㳢����Activity��״̬��save֮��, commitһ��FragmentTransaction, �ŵ���һ������ΪActivity״̬��ʧ������.��������, ��������ϸ�������ʵ�ʵĺ���֮ǰ, �����������������ڵ���onSaveInstanceState()ʱ�ڱ�������ʲô. ����������һƪ���� <a href="https://www.androiddesignpatterns.com/2013/08/binders-death-recipients.html" target="_blank" rel="noopener">Binders &amp; Death Recipients</a>�����������۵�����, AndroidӦ����Android runtime�����м����޷������Լ�������(����ע: AndroidӦ�ÿ����ƺ�����ͨ��, ���ս�ϵͳ���ڽ��Ϳ����ɱ��Ϳ����߿���������ʵ�ֶ��Ƿ���ȥӦ�����ӵ�����). Androidϵͳ��Ȩ���κ�ʱ���ս�������ͷ��ڴ�,����̨Activity������˶�����û�κξ������ɱ��.</p>
+<p>Ϊ��ȷ�����ֶ��û����������ص�, ��ʱ���ȶ�����Ϊ,Framework����Activity��������ƻ�ǰ, ���ÿ��Activityһ�������������onSaveInstanceState()����ȥ��������״̬. �������״̬�Իָ�ʱ, ����Activity�Ƿ�ϵͳɱ��,�û���о���ǰ̨Activity�ͺ�̨Activity֮�����޷��л���,��framework���onSaveInstanceState()ʱ, ������һ����Bundle����ķ�����ʹActivity��������״̬, ��¼�ڲ�Dialog, Fragment��View��״̬.����������ʱ, ϵͳͨ��Binder�ӿڰ�װBundle����System Server����, �����ﱻ��ȫ�ش��.��ϵͳ�Ժ�������´���Activityʱ, �ᷢ���Ǹ���ͬ��Bundle����Ӧ�ó���, �Ա��������ָ�Activity��ȥ��״̬.</p>
+<p>��ôΪʲô���׳��쳣��? �ð�, ����Դ������һ����ʵ, ����ЩBundle���󶼴�����onSaveInstanceState()������ʱActivity��һ�ſ���, ���˶���.����ζ�ŵ����ڵ���onSaveInstanceState()֮�����е�FragmentTransaction# commit(), transaction�������û�м�ס����Ϊ������û�б���¼ΪActivity״̬��һ����.���û��ĽǶȿ�, transaction��������ʧ, ���������UI״̬��ʧ. Ϊ���û�����, Android��ϧһ�д��۱���״̬��ʧ, �κ�ʱ��Ҫ��������UI��ʧʱ�ͻ���׳�һ��IllegalStateException�쳣.</p>
+<h3 id="ʲoʱ���׳��쳣"><a href="#ʲoʱ���׳��쳣" class="headerlink" title="ʲôʱ���׳��쳣?"></a><strong>ʲôʱ���׳��쳣?</strong></h3><p>�����֮ǰ����������쳣���������Ѿ�ע�⵽���ڲ�ͬ��ƽ̨�汾�У�������ʱ�����в�ͬ�����磬�����ܷ��ֽϾɵ��豸���������׳��쳣������ʹ�õ�����֧�ֿ�ʱӦ�ó����ʹ�ùٷ������ʱ�����ױ�������Щ΢С�Ĳ�һ�µ����������Ϊ֧�ֿ��Ǵ���ģ����ܱ����Ρ� ���ǣ���Щ����ͨ���ǲ���ȷ�ġ�</p>
+<p>֮���Դ�����Щ΢С�Ĳ�һ��֮��������Ϊ��Honeycomb�е�Activity�������ڵ��ش�ı䡣��Honeycomb֮ǰ����ڱ���֮ͣǰ���ᱻ��Ϊkillable������ζ��onSaveInstanceState������onPause����֮ǰ���������á�Ȼ������Honeycomb��ʼ���ֻ����ֹͣ(ָstop, ����ָ��ͣpause)֮��ű���Ϊ�ǿ�ɱ���ģ�����ζ��onSaveInstanceState�������ڽ���onStop����֮ǰ��������onPause����֮ǰ�����á���Щ�����ܽ����±��У�</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>pre-Honeycomb</strong></th>
+<th><strong>post-Honeycomb</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activities can be killed before onPause()?</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Activities can be killed before onStop()?</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>onSaveInstanceState(Bundle) is guaranteed to be called before��</td>
+<td>onPause()</td>
+<td>onStop()</td>
+</tr>
+</tbody>
+</table>
+<p>���ڶ�Activity����������������΢���ģ�֧�ֿ���ʱ��Ҫ����ƽ̨�汾���ı�����Ϊ�����磬��Honeycomb �豸�������ϰ汾�У�ÿ����onSaveInstanceState����֮�����commit�������濪����״̬��ʧ�Ѿ�������Ȼ����ÿ�η����������ʱ���׳�һ���쳣������Honeycomb ֮ǰ�汾�豸��˵�����ǵ�������̫ǿ�ˣ���Ϊ���ǵ�onSaveInstanceState����������Activity�����������е��õ�ʱ��Ҫ��ö࣬��˸������ܵ������״̬��ʧ����в��Android�ŶӲ��ò�������Э��Ϊ�˸��õ���ɰ汾��ƽ̨���н������Ͼɵ��豸��������onPause������onStop����֮����ܵ��µ�����״̬��ʧ���±��ܽ�������ƽ̨��֧�ֿ����Ϊ��</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>pre-Honeycomb</strong></th>
+<th><strong>post-Honeycomb</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commit() before onPause()</td>
+<td>OK</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>commit() between onPause() and onStop()</td>
+<td>STATE LOSS</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>commit() after onStop()</td>
+<td>EXCEPTION</td>
+<td>EXCEPTION</td>
+</tr>
+</tbody>
+</table>
+<h3 id="��o��������쳣"><a href="#��o��������쳣" class="headerlink" title="��ô��������쳣?"></a><strong>��ô��������쳣?</strong></h3><p>һ����������ʵ�ʷ��������飬����״̬�Ķ�ʧ�ͱ�������˺ܶࡣ������Ѿ�����ƪ�����ж�����ô�࣬ϣ�����ܸ��õ����֧�ֿ�Ĺ���ԭ���Լ�Ϊʲô����Ӧ�ó���ʧ״̬�Ƿǳ���Ҫ�ġ�������ҵ���ƪ������Ϊ��Ѱ��һ�������޸�����ô���������Ӧ�ó�����ʹ��FragmentTransactions��ʱ�򣬼�ע�����һЩ���飺</p>
+<ul>
+<li><strong>��Activity�������ڷ������ύ����ʱҪС�ġ�</strong> �����Ӧ�ó���ֻ���ڵ�һ�ε���onCreate����ʱ��/����Ӧ�û�����ʱ���ύ������˲��������κ����⡣���ǣ���������ʼð�ս�������Activity�������ڷ�������onActivityResult������onStart������onResume��������������е㼬�֡����磬����Ӧ����FragmentActivity��onResume�����������ύ������Ϊ��ĳЩ����£������ڻָ��״̬֮ǰ���ø÷������й���ϸ��Ϣ��������ĵ������������Ӧ�ó�����Ҫ�ڳ�onCreate����֮���Activity�������ڷ������ύ��������FragmentActivity��onResumeFragments������Activity��onPostResume������ִ�С������ַ�����֤��Activity�ָ���ԭ����״̬֮�󱻵��ã��Ӷ�������״̬һ��ʧ�Ŀ����ԡ� ����Ϊ���������һ���һ�����ӣ���鿴�Ҷ����<a href="http://stackoverflow.com/q/16265733/844882" target="_blank" rel="noopener">StackOverflow question</a> �Ļش��˽�����ύFragmentTransactions����Ӧ��Activity��onActivityResult���������ĵ��ã���</li>
+<li><strong>�������첽�ص�������ִ������ </strong>  ��������õķ�������AsyncTask��onPostExecute������LoaderManager.LoaderCallbacks��onLoadFinished������ ����Щ������ִ������������ǣ��ڵ�������ʱ�����ǲ��˽�Activity�������ڵĵ�ǰ״̬�� ���磬��������һϵ���¼���</li>
+</ul>
+<ol>
+<li><p>һ���ִ��һ��AsyncTask��</p>
+</li>
+<li><p>�û����¡�Home���������»��onSaveInstanceState������onStop�������������á�</p>
+</li>
+<li><p>AsyncTask��ɲ�����onPostExecute����������֪��Activity�Ѿ�ֹͣ��</p>
+</li>
+<li><p>FragmentTransaction��onPostExecute���������ڱ��ύ�������쳣���׳���</p>
+</li>
+</ol>
+<p>ͨ��������Щ����±����쳣����÷����Ǽ򵥵ر������첽�ص�������һ���ύ���� Google����ʦ�ƺ�Ҳͬ����һ�۵㡣����Android������С�����ƪ���£�Android�Ŷ���Ϊ�����첽�ص��������ύFragmentTransaction���µ��û��������Ҫ�仯���ܻ���û�������ɲ���Ӱ�졣�������Ӧ�ó�����Ҫ����Щ�ص�������ִ�����񣬲���û�м򵥵ķ�������֤��onSaveInstanceState����֮�󲻻���ûص�������ܲ��ò�������ʹ��commitAllowingStateLoss������������ܷ�����״̬��ʧ�� ���������������StackOverflow���ӣ��˽������ʾ��<a href="http://stackoverflow.com/q/8040280/844882" target="_blank" rel="noopener">����</a> and <a href="http://stackoverflow.com/q/7992496/844882" target="_blank" rel="noopener">����</a>����</p>
+<ul>
+<li><strong>commitAllowingStateLoss������ʹ��ֻ��Ϊ�����ֶΡ� </strong>  ����commit������commitAllowingStateLoss����֮���Ψһ�����ǣ��������״̬��ʧ�����߲����׳��쳣��<br> ͨ��������㲻����ʹ�����ַ�������Ϊ����ζ���п��ܳ���״̬��ʧ�� ��Ȼ�����õĽ�������Ǳ��ȷ���ڱ���Activity״̬֮ǰ����commit��������Ϊ���������õ��û����顣�����޷�����״̬��ʧ�Ŀ����ԣ�����Ӧʹ��commitAllowingStateLoss������</li>
+</ul>
+<p>ϣ����Щ�����ܰ����������ȥ�������쳣���κ����⡣ �������Ȼ�����鷳������<a href="http://stackoverflow.com/" target="_blank" rel="noopener">StackOverflow</a>�������⣬��������������з������ӣ��ҿ��Կ�����:)</p>
+<p>һ���������л�����Ķ�, ��������κ������������ۡ� ��������úܰ�Ļ����벻Ҫ����+1������ͣ�����Google+�Ϸ�����ƪ���£�</p>
+<p>����ע: �����Ƿ����<a href="https://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html" target="_blank" rel="noopener">��ƪ��</a>, ����˵�������ܽ�Fragment��������쳣�Ĵ���, ����Ҳ�ܶ�ͬ�з���, ���Ǵ��ǻ����д����Һ�ǿ��֢. �ʱ��Ľ���������У����������Сʱ(Ц��..Ӣ��̫��), �ﵽ��������ĳ̶�. ����㿴�������»��ǲ�����ô����, ��������ʾ��, ��Ҫ�ǿ���Activity��������!!! �����������������봦�ڰ�ȫ״̬, Ȼ����ȥ����. ������ǲ�֪�������д, email��ϵ��siesielee@gmail.com</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/translation/" rel="tag"># translation</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/23/Android-Anims/" rel="next" title="Android Animation">
+                <i class="fa fa-chevron-left"></i> Android Animation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Paliy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ϊʲo�׳��쳣"><span class="nav-number">1.</span> <span class="nav-text">Ϊʲô�׳��쳣?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ʲoʱ���׳��쳣"><span class="nav-number">1.1.</span> <span class="nav-text">ʲôʱ���׳��쳣?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#��o��������쳣"><span class="nav-number">1.2.</span> <span class="nav-text">��ô��������쳣?</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Paliy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

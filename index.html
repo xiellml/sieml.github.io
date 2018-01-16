@@ -229,6 +229,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/stateless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/16/stateless/" itemprop="url">Fragment Transactions & Activity State Loss(����)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-16T20:58:00+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>���¶�ջ׷�ٺ��쳣��Ϣ�Դ�Honeycomb’s���ڰ汾������������StackOverflow:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: Can not perform <span class="keyword">this</span> action after onSaveInstanceState</span><br><span class="line">    at android.support.v4.app.FragmentManagerImpl.checkStateLoss(FragmentManager.java:<span class="number">1341</span>)</span><br><span class="line">    at android.support.v4.app.FragmentManagerImpl.enqueueAction(FragmentManager.java:<span class="number">1352</span>)</span><br><span class="line">    at android.support.v4.app.BackStackRecord.commitInternal(BackStackRecord.java:<span class="number">595</span>)</span><br><span class="line">    at android.support.v4.app.BackStackRecord.commit(BackStackRecord.java:<span class="number">574</span>)</span><br></pre></td></tr></table></figure>
+<p>��ƪ���½������Ϊʲô�Լ���ʱ�׳��쳣, Ȼ���ܽ�һЩ����������ȷ�����Ӧ�ó����ڱ���.</p>
+<h2 id="Ϊʲo�׳��쳣"><a href="#Ϊʲo�׳��쳣" class="headerlink" title="Ϊʲô�׳��쳣?"></a><strong>Ϊʲô�׳��쳣?</strong></h2><p>����쳣���׳�����Ϊ�㳢����Activity��״̬��save֮��, commitһ��FragmentTransaction, �ŵ���һ������ΪActivity״̬��ʧ������.��������, ��������ϸ�������ʵ�ʵĺ���֮ǰ, �����������������ڵ���onSaveInstanceState()ʱ�ڱ�������ʲô. ����������һƪ���� <a href="https://www.androiddesignpatterns.com/2013/08/binders-death-recipients.html" target="_blank" rel="noopener">Binders &amp; Death Recipients</a>�����������۵�����, AndroidӦ����Android runtime�����м����޷������Լ�������(����ע: AndroidӦ�ÿ����ƺ�����ͨ��, ���ս�ϵͳ���ڽ��Ϳ����ɱ��Ϳ����߿���������ʵ�ֶ��Ƿ���ȥӦ�����ӵ�����). Androidϵͳ��Ȩ���κ�ʱ���ս�������ͷ��ڴ�,����̨Activity������˶�����û�κξ������ɱ��.</p>
+<p>Ϊ��ȷ�����ֶ��û����������ص�, ��ʱ���ȶ�����Ϊ,Framework����Activity��������ƻ�ǰ, ���ÿ��Activityһ�������������onSaveInstanceState()����ȥ��������״̬. �������״̬�Իָ�ʱ, ����Activity�Ƿ�ϵͳɱ��,�û���о���ǰ̨Activity�ͺ�̨Activity֮�����޷��л���,��framework���onSaveInstanceState()ʱ, ������һ����Bundle����ķ�����ʹActivity��������״̬, ��¼�ڲ�Dialog, Fragment��View��״̬.����������ʱ, ϵͳͨ��Binder�ӿڰ�װBundle����System Server����, �����ﱻ��ȫ�ش��.��ϵͳ�Ժ�������´���Activityʱ, �ᷢ���Ǹ���ͬ��Bundle����Ӧ�ó���, �Ա��������ָ�Activity��ȥ��״̬.</p>
+<p>��ôΪʲô���׳��쳣��? �ð�, ����Դ������һ����ʵ, ����ЩBundle���󶼴�����onSaveInstanceState()������ʱActivity��һ�ſ���, ���˶���.����ζ�ŵ����ڵ���onSaveInstanceState()֮�����е�FragmentTransaction# commit(), transaction�������û�м�ס����Ϊ������û�б���¼ΪActivity״̬��һ����.���û��ĽǶȿ�, transaction��������ʧ, ���������UI״̬��ʧ. Ϊ���û�����, Android��ϧһ�д��۱���״̬��ʧ, �κ�ʱ��Ҫ��������UI��ʧʱ�ͻ���׳�һ��IllegalStateException�쳣.</p>
+<h3 id="ʲoʱ���׳��쳣"><a href="#ʲoʱ���׳��쳣" class="headerlink" title="ʲôʱ���׳��쳣?"></a><strong>ʲôʱ���׳��쳣?</strong></h3><p>�����֮ǰ����������쳣���������Ѿ�ע�⵽���ڲ�ͬ��ƽ̨�汾�У�������ʱ�����в�ͬ�����磬�����ܷ��ֽϾɵ��豸���������׳��쳣������ʹ�õ�����֧�ֿ�ʱӦ�ó����ʹ�ùٷ������ʱ�����ױ�������Щ΢С�Ĳ�һ�µ����������Ϊ֧�ֿ��Ǵ���ģ����ܱ����Ρ� ���ǣ���Щ����ͨ���ǲ���ȷ�ġ�</p>
+<p>֮���Դ�����Щ΢С�Ĳ�һ��֮��������Ϊ��Honeycomb�е�Activity�������ڵ��ش�ı䡣��Honeycomb֮ǰ����ڱ���֮ͣǰ���ᱻ��Ϊkillable������ζ��onSaveInstanceState������onPause����֮ǰ���������á�Ȼ������Honeycomb��ʼ���ֻ����ֹͣ(ָstop, ����ָ��ͣpause)֮��ű���Ϊ�ǿ�ɱ���ģ�����ζ��onSaveInstanceState�������ڽ���onStop����֮ǰ��������onPause����֮ǰ�����á���Щ�����ܽ����±��У�</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>pre-Honeycomb</strong></th>
+<th><strong>post-Honeycomb</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activities can be killed before onPause()?</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Activities can be killed before onStop()?</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>onSaveInstanceState(Bundle) is guaranteed to be called before��</td>
+<td>onPause()</td>
+<td>onStop()</td>
+</tr>
+</tbody>
+</table>
+<p>���ڶ�Activity����������������΢���ģ�֧�ֿ���ʱ��Ҫ����ƽ̨�汾���ı�����Ϊ�����磬��Honeycomb �豸�������ϰ汾�У�ÿ����onSaveInstanceState����֮�����commit�������濪����״̬��ʧ�Ѿ�������Ȼ����ÿ�η����������ʱ���׳�һ���쳣������Honeycomb ֮ǰ�汾�豸��˵�����ǵ�������̫ǿ�ˣ���Ϊ���ǵ�onSaveInstanceState����������Activity�����������е��õ�ʱ��Ҫ��ö࣬��˸������ܵ������״̬��ʧ����в��Android�ŶӲ��ò�������Э��Ϊ�˸��õ���ɰ汾��ƽ̨���н������Ͼɵ��豸��������onPause������onStop����֮����ܵ��µ�����״̬��ʧ���±��ܽ�������ƽ̨��֧�ֿ����Ϊ��</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>pre-Honeycomb</strong></th>
+<th><strong>post-Honeycomb</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commit() before onPause()</td>
+<td>OK</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>commit() between onPause() and onStop()</td>
+<td>STATE LOSS</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>commit() after onStop()</td>
+<td>EXCEPTION</td>
+<td>EXCEPTION</td>
+</tr>
+</tbody>
+</table>
+<h3 id="��o��������쳣"><a href="#��o��������쳣" class="headerlink" title="��ô��������쳣?"></a><strong>��ô��������쳣?</strong></h3><p>һ����������ʵ�ʷ��������飬����״̬�Ķ�ʧ�ͱ�������˺ܶࡣ������Ѿ�����ƪ�����ж�����ô�࣬ϣ�����ܸ��õ����֧�ֿ�Ĺ���ԭ���Լ�Ϊʲô����Ӧ�ó���ʧ״̬�Ƿǳ���Ҫ�ġ�������ҵ���ƪ������Ϊ��Ѱ��һ�������޸�����ô���������Ӧ�ó�����ʹ��FragmentTransactions��ʱ�򣬼�ע�����һЩ���飺</p>
+<ul>
+<li><strong>��Activity�������ڷ������ύ����ʱҪС�ġ�</strong> �����Ӧ�ó���ֻ���ڵ�һ�ε���onCreate����ʱ��/����Ӧ�û�����ʱ���ύ������˲��������κ����⡣���ǣ���������ʼð�ս�������Activity�������ڷ�������onActivityResult������onStart������onResume��������������е㼬�֡����磬����Ӧ����FragmentActivity��onResume�����������ύ������Ϊ��ĳЩ����£������ڻָ��״̬֮ǰ���ø÷������й���ϸ��Ϣ��������ĵ������������Ӧ�ó�����Ҫ�ڳ�onCreate����֮���Activity�������ڷ������ύ��������FragmentActivity��onResumeFragments������Activity��onPostResume������ִ�С������ַ�����֤��Activity�ָ���ԭ����״̬֮�󱻵��ã��Ӷ�������״̬һ��ʧ�Ŀ����ԡ� ����Ϊ���������һ���һ�����ӣ���鿴�Ҷ����<a href="http://stackoverflow.com/q/16265733/844882" target="_blank" rel="noopener">StackOverflow question</a> �Ļش��˽�����ύFragmentTransactions����Ӧ��Activity��onActivityResult���������ĵ��ã���</li>
+<li><strong>�������첽�ص�������ִ������ </strong>  ��������õķ�������AsyncTask��onPostExecute������LoaderManager.LoaderCallbacks��onLoadFinished������ ����Щ������ִ������������ǣ��ڵ�������ʱ�����ǲ��˽�Activity�������ڵĵ�ǰ״̬�� ���磬��������һϵ���¼���</li>
+</ul>
+<ol>
+<li><p>һ���ִ��һ��AsyncTask��</p>
+</li>
+<li><p>�û����¡�Home���������»��onSaveInstanceState������onStop�������������á�</p>
+</li>
+<li><p>AsyncTask��ɲ�����onPostExecute����������֪��Activity�Ѿ�ֹͣ��</p>
+</li>
+<li><p>FragmentTransaction��onPostExecute���������ڱ��ύ�������쳣���׳���</p>
+</li>
+</ol>
+<p>ͨ��������Щ����±����쳣����÷����Ǽ򵥵ر������첽�ص�������һ���ύ���� Google����ʦ�ƺ�Ҳͬ����һ�۵㡣����Android������С�����ƪ���£�Android�Ŷ���Ϊ�����첽�ص��������ύFragmentTransaction���µ��û��������Ҫ�仯���ܻ���û�������ɲ���Ӱ�졣�������Ӧ�ó�����Ҫ����Щ�ص�������ִ�����񣬲���û�м򵥵ķ�������֤��onSaveInstanceState����֮�󲻻���ûص�������ܲ��ò�������ʹ��commitAllowingStateLoss������������ܷ�����״̬��ʧ�� ���������������StackOverflow���ӣ��˽������ʾ��<a href="http://stackoverflow.com/q/8040280/844882" target="_blank" rel="noopener">����</a> and <a href="http://stackoverflow.com/q/7992496/844882" target="_blank" rel="noopener">����</a>����</p>
+<ul>
+<li><strong>commitAllowingStateLoss������ʹ��ֻ��Ϊ�����ֶΡ� </strong>  ����commit������commitAllowingStateLoss����֮���Ψһ�����ǣ��������״̬��ʧ�����߲����׳��쳣��<br> ͨ��������㲻����ʹ�����ַ�������Ϊ����ζ���п��ܳ���״̬��ʧ�� ��Ȼ�����õĽ�������Ǳ��ȷ���ڱ���Activity״̬֮ǰ����commit��������Ϊ���������õ��û����顣�����޷�����״̬��ʧ�Ŀ����ԣ�����Ӧʹ��commitAllowingStateLoss������</li>
+</ul>
+<p>ϣ����Щ�����ܰ����������ȥ�������쳣���κ����⡣ �������Ȼ�����鷳������<a href="http://stackoverflow.com/" target="_blank" rel="noopener">StackOverflow</a>�������⣬��������������з������ӣ��ҿ��Կ�����:)</p>
+<p>һ���������л�����Ķ�, ��������κ������������ۡ� ��������úܰ�Ļ����벻Ҫ����+1������ͣ�����Google+�Ϸ�����ƪ���£�</p>
+<p>����ע: �����Ƿ����<a href="https://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html" target="_blank" rel="noopener">��ƪ��</a>, ����˵�������ܽ�Fragment��������쳣�Ĵ���, ����Ҳ�ܶ�ͬ�з���, ���Ǵ��ǻ����д����Һ�ǿ��֢. �ʱ��Ľ���������У����������Сʱ(Ц��..Ӣ��̫��), �ﵽ��������ĳ̶�. ����㿴�������»��ǲ�����ô����, ��������ʾ��, ��Ҫ�ǿ���Activity��������!!! �����������������봦�ڰ�ȫ״̬, Ȼ����ȥ����. ������ǲ�֪�������д, email��ϵ��siesielee@gmail.com</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/Android-Anims/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -621,7 +823,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -634,7 +836,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
