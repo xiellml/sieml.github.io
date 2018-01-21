@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sand with the Wind">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="小泄露大翻船 Android Lollipop之前版本, 弹出dialog可能导致Android应用内存泄露 由 Pierre-Yves Ricau 原创 这篇文章开始于在我构建LeakCanary作为内部邮件专题时. 我发现了一个奇怪的内存泄露, 然后开始深入挖掘找出发生了什么事情。 艺术家 我得到来自 LeakCanary的内存泄漏报告: 1234* GC ROOT thread com.sq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A small leak will sink a great ship">
+<meta property="og:url" content="http://yoursite.com/2018/01/21/a-small-leak/index.html">
 <meta property="og:site_name" content="Sand with the Wind">
+<meta property="og:description" content="小泄露大翻船 Android Lollipop之前版本, 弹出dialog可能导致Android应用内存泄露 由 Pierre-Yves Ricau 原创 这篇文章开始于在我构建LeakCanary作为内部邮件专题时. 我发现了一个奇怪的内存泄露, 然后开始深入挖掘找出发生了什么事情。 艺术家 我得到来自 LeakCanary的内存泄漏报告: 1234* GC ROOT thread com.sq">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-01-21T13:28:47.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sand with the Wind">
+<meta name="twitter:title" content="A small leak will sink a great ship">
+<meta name="twitter:description" content="小泄露大翻船 Android Lollipop之前版本, 弹出dialog可能导致Android应用内存泄露 由 Pierre-Yves Ricau 原创 这篇文章开始于在我构建LeakCanary作为内部邮件专题时. 我发现了一个奇怪的内存泄露, 然后开始深入挖掘找出发生了什么事情。 艺术家 我得到来自 LeakCanary的内存泄漏报告: 1234* GC ROOT thread com.sq">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/21/a-small-leak/"/>
 
 
 
 
 
-  <title>Sand with the Wind</title>
+  <title>A small leak will sink a great ship | Sand with the Wind</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/21/a-small-leak/" itemprop="url">A small leak will sink a great ship</a></h1>
+          <h1 class="post-title" itemprop="name headline">A small leak will sink a great ship</h1>
         
 
         <div class="post-meta">
@@ -298,9 +299,7 @@
       
 
       
-        
-          
-            <p><strong>小泄露大翻船</strong></p>
+        <p><strong>小泄露大翻船</strong></p>
 <p>Android Lollipop之前版本, 弹出dialog可能导致Android应用内存泄露</p>
 <p>由 <a href="https://twitter.com/Piwai" target="_blank" rel="noopener">Pierre-Yves Ricau</a> 原创</p>
 <p>这篇文章开始于在我构建LeakCanary作为内部邮件专题时. 我发现了一个奇怪的内存泄露, 然后开始深入挖掘找出发生了什么事情。</p>
@@ -374,8 +373,6 @@
 <p>非常感谢<a href="https://twitter.com/jhumphries_sq" target="_blank" rel="noopener">Josh Humphries</a>, <a href="https://twitter.com/jessewilson" target="_blank" rel="noopener">Jesse Wilson</a>, <a href="https://twitter.com/maniksurtani" target="_blank" rel="noopener">Manik Surtani</a>, 和 <a href="https://twitter.com/WouterCoekaerts" target="_blank" rel="noopener">Wouter Coekaerts</a> 在我们的内部电子邮件专题中提供帮助。</p>
 <p>译者注: 原文在<a href="https://medium.com/square-corner-blog/a-small-leak-will-sink-a-great-ship-efbae00f9a0f" target="_blank" rel="noopener">这里</a>, 上一篇Fragment Transactions &amp; Activity State Loss的原文在<a href="http://jaredlam.github.io/blog/2015/12/23/android-fragment-transactions-and-activity-state-loss-yi/" target="_blank" rel="noopener">这</a></p>
 
-          
-        
       
     </div>
     
@@ -392,214 +389,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/stateless/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Paliy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sand with the Wind">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/16/stateless/" itemprop="url">Fragment Transactions & Activity State Loss(译文)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-16T20:58:00+08:00">
-                2018-01-16
-              </time>
+              <a href="/2018/01/16/stateless/" rel="next" title="Fragment Transactions & Activity State Loss(译文)">
+                <i class="fa fa-chevron-left"></i> Fragment Transactions & Activity State Loss(译文)
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>以下堆栈追踪和异常信息自从Honeycomb’s初期版本以来就困扰着StackOverflow:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: Can not perform <span class="keyword">this</span> action after onSaveInstanceState</span><br><span class="line">    at android.support.v4.app.FragmentManagerImpl.checkStateLoss(FragmentManager.java:<span class="number">1341</span>)</span><br><span class="line">    at android.support.v4.app.FragmentManagerImpl.enqueueAction(FragmentManager.java:<span class="number">1352</span>)</span><br><span class="line">    at android.support.v4.app.BackStackRecord.commitInternal(BackStackRecord.java:<span class="number">595</span>)</span><br><span class="line">    at android.support.v4.app.BackStackRecord.commit(BackStackRecord.java:<span class="number">574</span>)</span><br></pre></td></tr></table></figure>
-<p>这篇文章将会解释为什么以及何时抛出异常, 然后总结一些建议有助于确保你的应用程序不再奔溃.</p>
-<h2 id="为什么抛出异常"><a href="#为什么抛出异常" class="headerlink" title="为什么抛出异常?"></a><strong>为什么抛出异常?</strong></h2><p>这个异常被抛出是因为你尝试在Activity的状态被save之后, commit一个FragmentTransaction, 才导致一个被称为Activity状态丢失的现象.不管怎样, 在我们详细讨论这个实际的含义之前, 让我们首先来看看在调用onSaveInstanceState()时在背后发生了什么. 正如我在上一篇关于 <a href="https://www.androiddesignpatterns.com/2013/08/binders-death-recipients.html" target="_blank" rel="noopener">Binders &amp; Death Recipients</a>的文章所讨论的那样, Android应用在Android runtime环境中几乎无法控制自己的命运(译者注: Android应用开发似乎这是通病, 但收紧系统利于降低开发成本和开发者快速面向功能实现而非分心去应付庞杂的事情). Android系统有权在任何时候终结进程以释放内存,而后台Activity可能因此而几乎没任何警告而被杀死.</p>
-<p>为了确保这种对用户来讲是隐藏的, 有时不稳定的行为,Framework层在Activity变得易受破坏前, 会给每个Activity一个机会调用它的onSaveInstanceState()方法去保存它的状态. 当保存的状态稍后恢复时, 无论Activity是否被系统杀死,用户会感觉在前台Activity和后台Activity之间是无缝切换的,当framework层调onSaveInstanceState()时, 它传递一个含Bundle对象的方法来使Activity保存它的状态, 记录内部Dialog, Fragment和View的状态.当方法返回时, 系统通过Binder接口包装Bundle对象到System Server进程, 在那里被安全地存放.在系统稍后决定重新创建Activity时, 会发送那个相同的Bundle对象到应用程序, 以便它用来恢复Activity过去的状态.</p>
-<p>那么为什么会抛出异常呢? 好吧, 问题源于这样一个事实, 即这些Bundle对象都代表了onSaveInstanceState()被调用时Activity的一张快照, 仅此而已.这意味着当你在调用onSaveInstanceState()之后所有的FragmentTransaction# commit(), transaction事务操作没有记住因此它从来没有被记录为Activity状态的一部分.从用户的角度看, transaction操作将丢失, 导致意外的UI状态丢失. 为了用户体验, Android不惜一切代价避免状态丢失, 即任何时候要发生意外UI丢失时就会简单抛出一个IllegalStateException异常.</p>
-<h3 id="什么时候抛出异常"><a href="#什么时候抛出异常" class="headerlink" title="什么时候抛出异常?"></a><strong>什么时候抛出异常?</strong></h3><p>如果您之前遇到过这个异常，您可能已经注意到，在不同的平台版本中，引发的时机略有不同。例如，您可能发现较旧的设备倾向于少抛出异常，或者使用第三方支持库时应用程序比使用官方框架类时更容易崩溃。这些微小的不一致导致许多人认为支持库是错误的，不能被信任。 但是，这些假设通常是不正确的。</p>
-<p>之所以存在这些微小的不一致之处，是因为对Honeycomb中的Activity生命周期的重大改变。在Honeycomb之前，活动在被暂停之前不会被视为killable，这意味着onSaveInstanceState（）在onPause（）之前被立即调用。然而，从Honeycomb开始，活动只有在停止(指stop, 不是指暂停pause)之后才被认为是可杀死的，这意味着onSaveInstanceState（）现在将在onStop（）之前而不是在onPause（）之前被调用。这些差异总结在下表中：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th><strong>pre-Honeycomb</strong></th>
-<th><strong>post-Honeycomb</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Activities can be killed before onPause()?</td>
-<td>NO</td>
-<td>NO</td>
-</tr>
-<tr>
-<td>Activities can be killed before onStop()?</td>
-<td>YES</td>
-<td>NO</td>
-</tr>
-<tr>
-<td>onSaveInstanceState(Bundle) is guaranteed to be called before…</td>
-<td>onPause()</td>
-<td>onStop()</td>
-</tr>
-</tbody>
-</table>
-<p>由于对Activity生命周期所做的轻微更改，支持库有时需要根据平台版本来改变其行为。例如，在Honeycomb 设备及其以上版本中，每次在onSaveInstanceState（）之后调用commit（）警告开发者状态丢失已经发生。然而，每次发生这种情况时都抛出一个异常，对于Honeycomb 之前版本设备来说，它们的限制性太强了，因为它们的onSaveInstanceState（）方法在Activity的生命周期中调用的时间要早得多，因此更容易受到意外的状态丢失的威胁。Android团队不得不做出妥协：为了更好地与旧版本的平台进行交互，较旧的设备必须忍受onPause（）和onStop（）之间可能导致的意外状态丢失。下表总结了两种平台上支持库的行为：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th><strong>pre-Honeycomb</strong></th>
-<th><strong>post-Honeycomb</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>commit() before onPause()</td>
-<td>OK</td>
-<td>OK</td>
-</tr>
-<tr>
-<td>commit() between onPause() and onStop()</td>
-<td>STATE LOSS</td>
-<td>OK</td>
-</tr>
-<tr>
-<td>commit() after onStop()</td>
-<td>EXCEPTION</td>
-<td>EXCEPTION</td>
-</tr>
-</tbody>
-</table>
-<h3 id="怎么避免这个异常"><a href="#怎么避免这个异常" class="headerlink" title="怎么避免这个异常?"></a><strong>怎么避免这个异常?</strong></h3><p>一旦你明白了实际发生的事情，避免活动状态的丢失就变得容易了很多。如果你已经在这篇文章中读了这么多，希望你能更好地理解支持库的工作原理，以及为什么避免应用程序丢失状态是非常重要的。如果你找到这篇文章是为了寻找一个快速修复，那么当你在你的应用程序中使用FragmentTransactions的时候，记注下面的一些建议：</p>
-<ul>
-<li><strong>在Activity生命周期方法中提交事务时要小心。</strong> 大多数应用程序只会在第一次调用onCreate（）时和/或响应用户输入时才提交事务，因此不会面临任何问题。但是，随着事务开始冒险进入其他Activity生命周期方法，如onActivityResult（），onStart（）和onResume（），事情会变得有点棘手。例如，您不应该在FragmentActivity＃onResume（）方法内提交事务，因为在某些情况下，可以在恢复活动状态之前调用该方法（有关详细信息，请参阅<a href="http://developer.android.com/reference/android/support/v4/app/FragmentActivity.html#onResume(" target="_blank" rel="noopener">文档</a>) ）。如果您的应用程序需要在除onCreate（）之外的Activity生命周期方法中提交事务，则在FragmentActivity＃onResumeFragments（）或Activity＃onPostResume（）中执行。这两种方法保证在Activity恢复到原来的状态之后被调用，从而避免了状态一起丢失的可能性。 （作为如何做到这一点的一个例子，请查看我对这个<a href="http://stackoverflow.com/q/16265733/844882" target="_blank" rel="noopener">StackOverflow question</a> 的回答，了解如何提交FragmentTransactions以响应对Activity＃onActivityResult（）方法的调用）。</li>
-<li><strong>避免在异步回调方法中执行事务。 </strong>  这包括常用的方法，如AsyncTask＃onPostExecute（）和LoaderManager.LoaderCallbacks＃onLoadFinished（）。 在这些方法中执行事务的问题是，在调用它们时，他们不了解Activity生命周期的当前状态。 例如，考虑以下一系列事件：</li>
-</ul>
-<ol>
-<li><p>一个活动执行一个AsyncTask。</p>
-</li>
-<li><p>用户按下“Home”键，导致活动的onSaveInstanceState（）和onStop（）方法被调用。</p>
-</li>
-<li><p>AsyncTask完成并调用onPostExecute（），但不知道Activity已经停止。</p>
-</li>
-<li><p>FragmentTransaction在onPostExecute（）方法内被提交，导致异常被抛出。</p>
-</li>
-</ol>
-<p>通常，在这些情况下避免异常的最好方法是简单地避免在异步回调方法中一起提交事务。 Google工程师似乎也同意这一观点。根据Android开发者小组的这篇文章，Android团队认为，从异步回调方法中提交FragmentTransaction导致的用户界面的主要变化可能会对用户体验造成不利影响。如果您的应用程序需要在这些回调方法中执行事务，并且没有简单的方法来保证在onSaveInstanceState（）之后不会调用回调，你可能不得不求助于使用commitAllowingStateLoss（）并处理可能发生的状态丢失。 （另请参阅这两个StackOverflow帖子，了解更多提示，<a href="http://stackoverflow.com/q/8040280/844882" target="_blank" rel="noopener">这里</a> and <a href="http://stackoverflow.com/q/7992496/844882" target="_blank" rel="noopener">这里</a>）。</p>
-<ul>
-<li><strong>commitAllowingStateLoss（）的使用只作为最后的手段。 </strong>  调用commit（）和commitAllowingStateLoss（）之间的唯一区别是，如果发生状态丢失，后者不会抛出异常。<br> 通常情况下你不会想使用这种方法，因为这意味着有可能出现状态损失。 当然，更好的解决方案是编程确保在保存Activity状态之前调用commit（），因为这会带来更好的用户体验。除非无法避免状态丢失的可能性，否则不应使用commitAllowingStateLoss（）。</li>
-</ul>
-<p>希望这些建议能帮助您解决过去遇到此异常的任何问题。 如果您仍然遇到麻烦，请在<a href="http://stackoverflow.com/" target="_blank" rel="noopener">StackOverflow</a>发布问题，并在下面的评论中发布链接，我可以看看。:)</p>
-<p>一如既往，感谢您的阅读, 如果您有任何问题留下评论。 如果您觉得很棒的话，请不要忘记+1这个博客，并在Google+上分享这篇文章！</p>
-<p>译者注: 此文是翻译的<a href="https://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html" target="_blank" rel="noopener">这篇文</a>, 可以说是最先总结Fragment事务操作异常的大神, 国内也很多同行翻译, 但是大都是机翻有错误我很强迫症. 故本文借助机翻并校正了两三个小时(笑哭..英文太烂), 达到了我满意的程度. 如果你看完了文章还是不懂怎么操作, 我这里提示下, 主要是考虑Activity生命周期!!! 所以你的事务操作必须处于安全状态, 然后再去操作. 如果还是不知代码如何写, email联系我siesielee@gmail.com</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -609,369 +420,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/Android-Anims/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Paliy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sand with the Wind">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/Android-Anims/" itemprop="url">Android Animation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-23T11:05:27+08:00">
-                2017-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Android动画共有3大类"><a href="#Android动画共有3大类" class="headerlink" title="Android动画共有3大类"></a>Android动画共有<strong>3</strong>大类</h2><ul>
-<li>逐帧动画, 简称”帧动画”, 英文名: Frame Animation or Drawable Animation</li>
-<li>补间动画, 又称”视图动画”, 英文名: Tween Animation or View Animation</li>
-<li>属性动画, 英文名: Property Animation</li>
-</ul>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><blockquote>
-<p>API 3.0之后才新加入了Property动画作为补充<br>凡是前两种动画可以实现的效果,  属性动画一定可以实现其效果<br>如果你想在API &lt; 3.0的机器上使用同样效果, 可使用NineOldAndroids动画库</p>
-</blockquote>
-<ol>
-<li><strong>逐帧动画最简单</strong>  一帧一帧的, 可以使用XML文件把资源组合起来</li>
-<li><strong>补间动画最常见</strong>  补间补间, 就是把起止帧之间的帧画出来, 改变View的透明度, 位置, 大小, 角度.  它结束后看到的位置不是真实坐标的改变, 只是绘制位置的改变.</li>
-<li><strong>属性动画最强大</strong>  会改变View的真实属性(坐标), 父类为系统抽象类Animator(有500多行)基本不直接使用, 最常用的是子类ValueAnimator和ObjectAnimator.</li>
-</ol>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="1-逐帧动画"><a href="#1-逐帧动画" class="headerlink" title="1. 逐帧动画"></a>1. 逐帧动画</h3><h4 id="特点"><a href="#特点" class="headerlink" title="特点:"></a>特点:</h4><p><em>细腻灵活</em>      <em>资源制作量大</em>      <em>图片文件多</em></p>
-<h4 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤:"></a>使用步骤:</h4><ol>
-<li>添加帧: XML定义资源文件, 或者Java代码创建 </li>
-<li>引用支持类: AnimationDrawable<h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4></li>
-<li><p>XML方式</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">animation-list</span></span></span><br><span class="line"><span class="tag">   <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span> </span></span><br><span class="line"><span class="tag">   <span class="attr">android:oneshot</span>=<span class="string">"false"</span>  &gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 定义一个动画帧，Drawable为img0，持续时间50毫秒 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/img0"</span> <span class="attr">android:duration</span>=<span class="string">"50"</span> /&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 定义一个动画帧，Drawable为img1，持续时间100毫秒 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/img1"</span> <span class="attr">android:duration</span>=<span class="string">"100"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">animation-list</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//然后加载XML</span><br><span class="line">frameAnim =(AnimationDrawable)getResources().getDrawable(id);</span><br><span class="line">view.setBackgroundDrawable(frameAnim);</span><br><span class="line">frameAnim.start();frameAnim.stop();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Java代码方式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">frameAnim =<span class="keyword">new</span> AnimationDrawable();</span><br><span class="line">frameAnim.addFrame(getResources().getDrawable(R.drawable.img0), <span class="number">50</span>);</span><br><span class="line">frameAnim.addFrame(getResources().getDrawable(R.drawable.img1), <span class="number">100</span>);</span><br><span class="line">frameAnim.setOneShot(<span class="keyword">false</span>);view.setBackgroundDrawable(frameAnim);</span><br><span class="line">frameAnim.start();</span><br><span class="line">frameAnim.stop();</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="2-补间动画"><a href="#2-补间动画" class="headerlink" title="2. 补间动画"></a>2. 补间动画</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理:"></a>原理:</h4><p>给出两个关键帧, 通过一些算法将给定属性值在给定的时间内在两个关键帧间渐变。</p>
-<p>方式实现类:</p>
-<ul>
-<li>AlphaAnimation：透明度（alpha）渐变效果，对应标签。</li>
-<li>TranslateAnimation：位移渐变，需要指定移动点的开始和结束坐标，对应标签。</li>
-<li>ScaleAnimation：缩放渐变，可以指定缩放的参考点，对应标签。</li>
-<li>RotateAnimation：旋转渐变，可以指定旋转的参考点，对应标签。</li>
-<li>AnimationSet：组合渐变，支持组合多种渐变效果，对应标签</li>
-</ul>
-<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点:"></a>特点:</h4><p><em>过渡自然</em>      <em>实现简单快速</em> </p>
-<h4 id="使用步骤-1"><a href="#使用步骤-1" class="headerlink" title="使用步骤:"></a>使用步骤:</h4><ol>
-<li>设置动画形式: 如渐变 </li>
-<li>设定起止状态: 如起始1.0f和结束0.1f</li>
-</ol>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码:"></a>代码:</h4><ol>
-<li><p>XML方式<br>XML文件的根元素可以为<alpha>, <scale>, <translate>, <rotate>,<interpolator>, <set>(表示以上几个动画的集合, set可以嵌套). 默认情况下, 所有动画是同时进行的, 可以通过startOffset属性设置各个动画的开始偏移（开始时间）来达到动画顺序播放的效果.</set></interpolator></rotate></translate></scale></alpha></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">alpha</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>      <span class="attr">android:interpolator</span>=<span class="string">"@android:anim/accelerate_decelerate_interpolator"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:fromAlpha</span>=<span class="string">"1.0"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">android:toAlpha</span>=<span class="string">"0.1"</span>  </span></span><br><span class="line"><span class="tag">    <span class="attr">android:duration</span>=<span class="string">"2000"</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Java代码方式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Animation anim = <span class="keyword">new</span> AlphaAnimation(<span class="number">1.0f</span>,<span class="number">0.1f</span>);</span><br><span class="line"><span class="comment">//设置持续时间</span></span><br><span class="line">anim.setDuration(<span class="number">2000</span>);</span><br><span class="line"><span class="comment">//清除原有的动画，避免多次点击出现重复的效果</span></span><br><span class="line">view.clearAnimation();</span><br><span class="line"><span class="comment">//开始执行动画</span></span><br><span class="line">view.startAnimation(anim);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="3-属性动画"><a href="#3-属性动画" class="headerlink" title="3. 属性动画"></a>3. 属性动画</h3><h4 id="特点-2"><a href="#特点-2" class="headerlink" title="特点:"></a>特点:</h4><p><em>实现费脑</em>     <em>属性接口更多</em> (如改变view的背景颜色属性)</p>
-<h4 id="使用步骤-2"><a href="#使用步骤-2" class="headerlink" title="使用步骤:"></a>使用步骤:</h4><ol>
-<li>直接new出ValueAnimator或者子类ObjectAnimator </li>
-<li>设置动画到View</li>
-</ol>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码:"></a>代码:</h4><ol>
-<li>只有代码方式: </li>
-</ol>
-<p>支持rotation, alpha, translationX, translationY, scaleX, scaleY, 以及使用AnimatorSet组合前者多种基础动画方式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ObjectAnimator animator = ObjectAnimator.ofFloat(imageView, <span class="string">"translationX"</span>, <span class="number">0f</span>, -<span class="number">300f</span>, <span class="number">0f</span>);</span><br><span class="line">animator.setDuration(<span class="number">2000</span>);</span><br><span class="line">animator.start();</span><br></pre></td></tr></table></figure></p>
-<p>AnimationSet提供了一个把多个动画组合成一个组合的机制，并可设置组中动画的时序关系，如同时播放，顺序播放等。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AnimatorSet bouncer = <span class="keyword">new</span> AnimatorSet(); </span><br><span class="line">bouncer.play(anim1).before(anim2); </span><br><span class="line">bouncer.play(anim2).with(anim3); </span><br><span class="line">bouncer.play(anim2).with(anim4) </span><br><span class="line">bouncer.play(anim5).after(amin2); </span><br><span class="line">animatorSet.start();</span><br></pre></td></tr></table></figure></p>
-<h4 id="子类源码剖析-ObjectAnimator继承自ValueAnimator"><a href="#子类源码剖析-ObjectAnimator继承自ValueAnimator" class="headerlink" title="子类源码剖析: ObjectAnimator继承自ValueAnimator"></a>子类源码剖析: ObjectAnimator继承自ValueAnimator</h4><p><strong>ValueAnimator</strong> 包含动画的开始值，结束值，持续时间等属性</p>
-<ul>
-<li>内部流程:</li>
-</ul>
-<ol>
-<li><p>计算属性值<br>时间因子(input) = 动画已进行的时间跟动画总时间(duration)的比计算(0~1)—TimeInterpolator<br>插值因子(fraction,表示动画的完成度) = TimeInterpolator通过开始值,结束值,时间因子计算出—TimeInterpolator<br>公式为: fraction = (Math.cos((input + 1) <em> Math.PI) / 2.0f) + 0.5f;<br>属性值 = TypeAnimator通过插值因子计算出 = {开始值,结束值,差值}—TypeAnimator<br>根据TypeEvaluator的函数evaluate():<br>public Float evaluate(float fraction, Number startValue, Number endValue) {<br>float startFloat = startValue.floatValue();<br>return startFloat + fraction </em> (endValue.floatValue() - startFloat);<br>}</p>
-</li>
-<li><p>根据属性值执行相应的动作, 如改变对象的某一属性。<br>需要实现ValueAnimator.onUpdateListener接 口，这个接口只有一个函数onAnimationUpdate()，<br>在这个函数中会传入ValueAnimator对象做为参数，通过这个 ValueAnimator对象的getAnimatedValue()函数可以得到当前的属性值<br>ValueAnimator animation = ValueAnimator.ofFloat(0f, 1f);<br>animation.setDuration(1000);<br>animation.addUpdateListener( AnimatorUpdateListener() {<br>@Override<br>onAnimationUpdate(ValueAnimator animation) {<br>Log.i(“update”, ((Float) animation.getAnimatedValue()).toString());<br>}<br>});<br>animation.setInterpolator( CycleInterpolator(3));<br>animation.start();</p>
-</li>
-</ol>
-<p><strong>ObjectAnimator</strong> 属性动画一般使用这个类, 但需满足以下条件, 否则就选用ValueAnimator</p>
-<ul>
-<li>这也是两者的区别:</li>
-</ul>
-<ol>
-<li>对象(View类等)应该有一个setter函数：set（驼峰命名法） </li>
-<li>如上面的例子中，像ofFloat之类的工场方法，第一个参数为对象名，第二个为属性名，后面的参数为<br>可变参数，如果values…参数只设置了一个值的话，那么会假定为目的值，属性值的变化范围为当前值到目的值，为了获得当前值，<br>该对象要有相应属性的getter方法：get（驼峰命名法） </li>
-<li>如果有getter方法，其应返回值类型应与相应的setter方法的参数类型一致。</li>
-</ol>
-<ul>
-<li>内部流程:<br>同ValueAnimator. 根据应用动画的对象或属性的不同, 可能需要在onAnimationUpdate函数中调用invalidate()函数刷新视图。 </li>
-</ul>
-<p>说明：请求重绘View树，即draw()过程，假如视图发生大小没有变化就不会调用layout()过程，并且只绘制那些“需要重绘的” 视图，即谁(View的话，只绘制该View ；ViewGroup，则绘制整个ViewGroup)请求invalidate()方法，就绘制该视图。 </p>
-<h4 id="属性动画扩展之LayoutTransition"><a href="#属性动画扩展之LayoutTransition" class="headerlink" title="属性动画扩展之LayoutTransition:"></a>属性动画扩展之LayoutTransition:</h4><blockquote>
-<p>容器布局动画就是当一个布局容器中的view方式改变时所产生的动画，<br>比如：但一个相对布局中新增加一个view时或者删除一个view时(或者visible改变时)，那么就可以通过一个动画来进行表现。</p>
-</blockquote>
-<ul>
-<li>5种状态变化:</li>
-</ul>
-<ol>
-<li>APPEARING: 动画所运行的项目出现在这个容器中时，即：view显示时的动画 </li>
-<li>CHANGE_APPEARING: 由于在这个容器总新增加了一个view，而导致原来的view位置发生改变所以会触发这个动画。 </li>
-<li>DISAPPEARING: view在这个容器中消失时触发的动画</li>
-<li>CHANGE_APPEARING：其他视图的出现导致某个视图改变。</li>
-<li>CHANGE_DISAPPEARING：其他视图的消失导致某个视图改变。</li>
-</ol>
-<ul>
-<li>使用步骤：</li>
-</ul>
-<ol>
-<li>创建LayoutTransition对象mTransitioner </li>
-<li>创建动画 </li>
-<li>在xml文件中将相应布局的属性Android:animateLayoutChanges=”true”设置为true </li>
-<li>将动画通过mTransitioner的setAnimator方法设置给mTransitioner </li>
-<li>通过布局控件的setLayoutTransition方法将mTransitioner设置进去</li>
-</ol>
-<ul>
-<li>代码<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mButtonAddBtn = (Button) findViewById(R.id.buttonLayoutAnmation);</span><br><span class="line">        mLayout = (LinearLayout) findViewById(R.id.layoutanmation);</span><br><span class="line">        LayoutTransition transition = <span class="keyword">new</span> LayoutTransition();<span class="comment">//创建LayoutTransition对象</span></span><br><span class="line">        transition.getDuration(<span class="number">2000</span>);</span><br><span class="line">        transition.setAnimator(LayoutTransition.APPEARING,  AnimatorInflater.loadAnimator(getApplicationContext(), R.animator.animator));<span class="comment">//创建动画</span></span><br><span class="line">        transition.setAnimator(LayoutTransition.CHANGE_APPEARING, <span class="keyword">null</span>);</span><br><span class="line">        transition.setAnimator(LayoutTransition.DISAPPEARING, <span class="keyword">null</span>);</span><br><span class="line">        transition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING,<span class="keyword">null</span>);</span><br><span class="line">        mLayout.setLayoutTransition(transition);<span class="comment">//方法将mTransitioner设置给布局</span></span><br><span class="line">        mButtonAddBtn.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                count++;</span><br><span class="line">                Button btn = <span class="keyword">new</span> Button(ActivityLayoutAnimations.<span class="keyword">this</span>);<span class="comment">//1.建立button对象</span></span><br><span class="line">                <span class="comment">//2.设置LayoutParams，宽和高</span></span><br><span class="line">                ViewGroup.LayoutParams params = <span class="keyword">new</span> ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);</span><br><span class="line">                btn.setLayoutParams(params);<span class="comment">//3.将宽高加到button上</span></span><br><span class="line">                btn.setText(<span class="string">"按钮"</span> + count);</span><br><span class="line">                mLayout.addView(btn);<span class="comment">//4.将button加到布局中</span></span><br><span class="line">               &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ol>
-<li><p>高级用法:<a href="http://blog.csdn.net/jdsjlzx/article/details/45558901" target="_blank" rel="noopener">http://blog.csdn.net/jdsjlzx/article/details/45558901</a><br>属性动画的高级用法中最有技术含量的也就是如何编写出一个合适的<strong>TypeEvaluator</strong></p>
-</li>
-<li><p>View绘制流程:<br>onMeasure()-&gt;onLayout()-&gt;onDraw()<br>即是绘制: 大小-&gt;位置-&gt;绘制<br>整个View树的绘图流程在ViewRoot.java类的performTraversals()函数展开，该函数所做 的工作可简单概况为是否需要重新计算视图大小(measure)、是否需要重新安置视图的位置(layout)、以及是否需要重绘(draw)</p>
-</li>
-</ol>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Paliy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sand with the Wind">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/23/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-23T09:46:00+08:00">
-                2017-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -979,6 +432,8 @@
 
 
           
+  
+
 
         </div>
         
@@ -999,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1053,6 +517,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#回收瓶里的Message"><span class="nav-number">1.</span> <span class="nav-text">回收瓶里的Message</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alert-Dialogs"><span class="nav-number">2.</span> <span class="nav-text">Alert Dialogs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吸烟枪"><span class="nav-number">3.</span> <span class="nav-text">吸烟枪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装级修复"><span class="nav-number">4.</span> <span class="nav-text">安装级修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#放弃修复"><span class="nav-number">5.</span> <span class="nav-text">放弃修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App级修复"><span class="nav-number">6.</span> <span class="nav-text">App级修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#水管工级修复"><span class="nav-number">7.</span> <span class="nav-text">水管工级修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1172,6 +652,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
