@@ -229,6 +229,761 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/23/Sorting-Algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/23/Sorting-Algorithm/" itemprop="url">Sorting Algorithm</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T22:35:06+08:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/23/Regular-expression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/23/Regular-expression/" itemprop="url">Regular expression</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T21:42:48+08:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法如图所示"><a href="#语法如图所示" class="headerlink" title="语法如图所示:"></a><strong>语法如图所示:</strong></h1><h3 id="重点总结"><a href="#重点总结" class="headerlink" title="重点总结:"></a><strong>重点总结:</strong></h3><ol>
+<li>中括号: <strong>逐个列举</strong>的作用, 可以用连字符表示一个范围, 第一个位置可以取保留字意义, 如果是^表示将其后一串字符取非, 其他位置则一律是字符本义(没有赋予特殊表达或象征含义); 所以要使用象征含义可以使用反斜杠”\”致使系统识别起作用</li>
+<li>小括号: 被括起来的字符作为一个分组, 会依次从1开始由左至右编号</li>
+<li>大括号: 表匹配前一个字符(串)的次数</li>
+<li>?: 匹配前一个字符(串)的0或1次, 可以有效防止贪婪匹配(如: *?; +?; {m,n}?)</li>
+<li>\数字: 引用分组字符串(数字即某个位置的小括号的数字编号, 再重用它内部的字符串于\数字出现处)</li>
+<li>?P&lt;别名&gt;: 给其后字符起别名组别(非数字式)</li>
+<li>?P=别名: 以别名方式调用组别字符串</li>
+<li>(?:字符串1|字符串2): 不分组, 但是可以表达多个或的匹配含义</li>
+<li>(?#注释): 忽略注释部分内容</li>
+<li>(?&lt;=前移字符串): 前面的字符要符合这个前移字符串(记忆: &lt;=表示往前推进一位, 所以是前置匹配)</li>
+<li>(?=之后串): 之后的字符要符合这个之后串(记忆: 不用指明方向则默认是后置匹配)</li>
+<li>(?!字符串): 之后的字符要不符合这个串通过</li>
+<li>(?&lt;!): 同上</li>
+<li>(?(组名)yes时再匹配串|no时再匹配串): 当引用组的匹配能发生(或者不成功)时,  还需要匹配的东西是yes(或no)串, 两者都符合才算整体匹配成功.</li>
+</ol>
+<p><img src="/2018/03/23/Regular-expression/re_grammar.jpg" alt="图-1"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/18/Graph/" itemprop="url">Graph</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T14:47:58+08:00">
+                2018-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>转自<a href="http://blog.csdn.net/Ontheroad_/article/details/72739380" target="_blank" rel="noopener">这</a></p>
+<p>一、基本术语</p>
+<p>图（graph）：图是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为：G(V,E)，其中，G表示一个图，V是图G中的顶点的集合，E是图G中边的集合。</p>
+<p>顶点(Vertex)：图中的数据元素。线性表中我们把数据元素叫元素，树中将数据元素叫结点。</p>
+<p>边：顶点之间的逻辑关系用边来表示，边集可以是空的。</p>
+<p>无向边(Edge)：若顶点V1到V2之间的边没有方向，则称这条边为无向边。</p>
+<p>无向图(Undirected graphs)：图中任意两个顶点之间的边都是无向边。（A,D）=（D,A）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于无向图G来说，G1=（V1,&#123;E1&#125;），其中顶点集合V1=&#123;A,B,C,D&#125;；边集和E1=&#123;（A,B），（B,C），（C,D），（D,A），（A,C）&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/03/18/Graph/20170525190422434.jpg" alt="图-1"></p>
+<p>有向边：若从顶点V1到V2的边有方向，则称这条边为有向边，也称弧(Arc)。用<v1,v2>表示，V1为狐尾(Tail)，V2为弧头(Head)。（V1，V2）≠（V2，V1）。<br>有向图(Directed graphs)：图中任意两个顶点之间的边都是有向边。</v1,v2></p>
+<p>   注意：无向边用“（）”，而有向边用“&lt; &gt;”表示。<br>简单图：图中不存在顶点到其自身的边，且同一条边不重复出现。</p>
+<p>无向完全图：无向图中，任意两个顶点之间都存在边。</p>
+<p>有向完全图：有向图中，任意两个顶点之间都存在方向互为相反的两条弧。</p>
+<p>稀疏图：有很少条边。</p>
+<p>稠密图：有很多条边。</p>
+<p>权（Weight）：与图的边或弧相关的数。</p>
+<p>网（Network）：带权的图。</p>
+<p>子图（Subgraph）：假设G=（V,{E}）和G‘=（V’,{E’}），如果V’包含于V且E’包含于E，则称G’为G的子图。</p>
+<p>度（Degree）：无向图中，与顶点V相关联的边的数目。有向图中，入度表示指向自己的边的数目，出度表示指向其他边的数目，该顶点的度等于入度与出度的和。</p>
+<p>路径的长度：一条路径上边或弧的数量。<br>连通图：图中任意两个顶点都是连通的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">图1不是连通图，图2是连通图。</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/03/18/Graph/20170525193004177.jpg" alt="图-1"></p>
+<p>连通分量：无向图中的极大连通子图。（子图必须是连通的且含有极大顶点数）。图1有两个连通分量<br>强连通分量：有向图中的极大强连通子图。</p>
+<p>生成树：无向图中连通且n个顶点n-1条边叫生成树。</p>
+<p>有向树：有向图中一顶点入度为0其余顶点入度为1。</p>
+<p>森林：一个有向图由若干棵有向树构成生成森林。</p>
+<p>二、图的存储结构</p>
+<p>1.邻接矩阵：用两个数组，一个数组保存顶点集，一个数组保存边集。</p>
+<p><img src="/2018/03/18/Graph/20170525194435220.jpg" alt="图-1"></p>
+<p>图的邻接矩阵存储的结构：</p>
+<p>[objc] view plain copy</p>
+<h1 id="define-maxvex-100"><a href="#define-maxvex-100" class="headerlink" title="define maxvex 100"></a>define maxvex 100</h1><p>typedef struct<br>{<br>char vexs[maxvex];<br>int arc[maxvex][maxvex];<br>int vertex,edges;<br>}MGraph;<br>无向图的创建代码：</p>
+<p>[objc] view plain copy</p>
+<h1 id="define-maxvexs-100"><a href="#define-maxvexs-100" class="headerlink" title="define maxvexs 100"></a>define maxvexs 100</h1><h1 id="define-infinity-65535-用65535来表示∞"><a href="#define-infinity-65535-用65535来表示∞" class="headerlink" title="define infinity 65535//用65535来表示∞"></a>define infinity 65535//用65535来表示∞</h1><p>typedef struct<br>{  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char vexs[maxvexs];  </span><br><span class="line">int arc[maxvexs][maxvexs];  </span><br><span class="line">int vertexes,edges;</span><br></pre></td></tr></table></figure>
+<p>}mgraph;  </p>
+<p>void creatgraph(mgraph *g)<br>{  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int i,j,k,w;  </span><br><span class="line">printf(&quot;输入顶点数和边数:\n&quot;);  </span><br><span class="line">scanf(&quot;%d,%d&quot;,&amp;g-&gt;vertexes,&amp;g-&gt;edges);  </span><br><span class="line">for(i=0;i&lt;g-&gt;vertexes;i++)//读入顶点信息，建立顶点表  </span><br><span class="line">    scanf(&quot;%c&quot;,&amp;g-&gt;vexs[i]);  </span><br><span class="line">for(i=0;i&lt;g-&gt;vertexes;i++)  </span><br><span class="line">    for(j=0;j&lt;g-&gt;vertexes;j++)  </span><br><span class="line">        g-&gt;arc[i][j]=infinity;//初始化邻接矩阵  </span><br><span class="line">for(k=0;k&lt;g-&gt;vertexes;k++)//读入edges条边，建立邻接矩阵  </span><br><span class="line">&#123;  </span><br><span class="line">    printf(&quot;输入边(Vi,vj)上的下标i，下标j,和权w:\n&quot;);  </span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;i,&amp;j,&amp;w);  </span><br><span class="line">    g-&gt;arc[i][j]=w;  </span><br><span class="line">    g-&gt;arc[j][i]=w;//无向图，矩阵对称  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>}  </p>
+<p>2.邻接表：数组与链表相结合的存储方法。</p>
+<p><img src="/2018/03/18/Graph/20170526182012923.jpg" alt="图-1"></p>
+<p>对于带权值的网图，可以在边表结点定义中再增加一个weight的数据域，存储权值信息即可。</p>
+<p><img src="/2018/03/18/Graph/20170526182239486.jpg" alt="图-1"></p>
+<p>邻接表结点定义</p>
+<p>[objc] view plain copy<br>typedef struct EdgeNode<br>{  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int adjvex; //邻接点域，存储该顶点对应的下标  </span><br><span class="line">int weight; //用于存储权值，对于非网图可以不需要  </span><br><span class="line">struct EdgeNode *next;  //链域，指向下一个邻接点</span><br></pre></td></tr></table></figure>
+<p>}EdgeNode;//边表结点  </p>
+<p>typedef struct VertexNode //顶点表结点<br>{  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char data; //顶点域，存储顶点信息  </span><br><span class="line">EdgeNode *firstedge; //边表头指针</span><br></pre></td></tr></table></figure>
+<p>}VertexNode,AdjList[MAXVEX];  </p>
+<p>typedef struct<br>{  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AdjList adjList;  </span><br><span class="line">int numVertexes,numEdges;//图中当前顶点数和边数</span><br></pre></td></tr></table></figure>
+<p>}GraphAdjList;  </p>
+<p>三、图的遍历<br>1.深度优先遍历（DFS）：从图中某个顶点v出发，访问此顶点，然后从v的未被访问的邻接点出发深度优先遍历图，直至图中所有和v有路径相通的顶点都被访问到。</p>
+<p><img src="/2018/03/18/Graph/20170526185405596.jpg" alt="图-1"></p>
+<p>2.广度优先遍历（BFS）：类似于树的层次遍历。</p>
+<p><img src="/2018/03/18/Graph/20170526190028942.jpg" alt="图-1"></p>
+<p><img src="/2018/03/18/Graph/20170526190127596.jpg" alt="图-1"></p>
+<p>四、最小生成树</p>
+<p>最小生成树：构造连通网的最小代价生成树。</p>
+<p>1.普里姆（prime）：</p>
+<p>第一种：先将一个起点加入最小生成树，之后不断寻找与最小生成树相连的边权最小的边能通向的点，并将其加入最小生成树，直至所有顶点都在最小生成树中。</p>
+<p><img src="/2018/03/18/Graph/20170528162007526.jpg" alt="图-1"></p>
+<p><img src="/2018/03/18/Graph/20170528162320608.jpg" alt="图-1"></p>
+<p>第二种：<br>1.将一个图的顶点分为两部分，一部分是最小生成树中的结点（A集合），另一部分是未处理的结点（B集合）。</p>
+<p>2.首先选择一个结点，将这个结点加入A中，然后，对集合A中的顶点遍历，找出A中顶点关联的边权值最小的那个（设为v），将此顶点从B中删除，加入集合A中。</p>
+<p>3.递归重复步骤2，直到B集合中的结点为空，结束此过程。</p>
+<p>4.A集合中的结点就是由Prime算法得到的最小生成树的结点，依照步骤2的结点连接这些顶点，得到的就是这个图的最小生成树。</p>
+<p><img src="/2018/03/18/Graph/20170528164118352.jpg" alt="图-1"></p>
+<p>2.克鲁斯卡尔（kluskal）:在剩下的所有未选取的边中，找最小边，如果和已选取的边构成回路，则放弃，选取次小边。</p>
+<p><img src="/2018/03/18/Graph/20170528162942256.jpg" alt="图-1"></p>
+<p>五、最短路径</p>
+<p>1.迪杰斯特拉算法（Dijkstra）：把图中的顶点集合V分成两组，第一组为已求出最短路径的顶点集合S（初始时S中只有源节点，以后每求得一条最短路径，就将它对应的顶点加入到集合S中，直到全部顶点都加入到S中）；第二组是未确定最短路径的顶点集合U。</p>
+<p>算法步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（1）初始化时，S只含有源节点；</span><br><span class="line">（2）从U中选取一个距离v最小的顶点k加入S中（该选定的距离就是v到k的最短路径长度）；</span><br><span class="line">（3）以k为新考虑的中间点，修改U中各顶点的距离；若从源节点v到顶点u的距离（经过顶点k）比原来距离（不经过顶点k）短，则修改顶点u的距离值，修改后的距离值是顶点k的距离加上k到u的距离；</span><br><span class="line">（4）重复步骤（2）和（3），直到终点在S中。</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/03/18/Graph/20170528181539023.jpg" alt="图-1"></p>
+<p><img src="/2018/03/18/Graph/20170528181553825.jpg" alt="图-1"></p>
+<p>2.弗洛伊德算法（Floyd）：<br>1，从任意一条单边路径开始。所有两点之间的距离是边的权，如果两点之间没有边相连，则权为无穷大。<br>2，对于每一对顶点 u 和 v，看看是否存在一个顶点 w 使得从 u 到 w 再到 v 比已知的路径更短。如果是更新它。</p>
+<p><img src="/2018/03/18/Graph/20170528213213405.jpg" alt="图-1"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/18/Observer-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/18/Observer-Pattern/" itemprop="url">Observer-Pattern</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T13:06:32+08:00">
+                2018-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Design-Pattern的出现意义"><a href="#Design-Pattern的出现意义" class="headerlink" title="Design Pattern的出现意义"></a>Design Pattern的出现意义</h1><p>概念就不说了之前文章就有. 它的意义或者说作用是:</p>
+<p>将代码设计得更好, 比如要可以<strong>重复使用</strong>、<strong>容易看懂</strong>、代码要<strong>可靠正确</strong>等, 达到这些要求便能真正实现工程化. 总的来说就是你要有做一名<strong>代码艺术大师</strong>的理想, 才能成为一合格的工程师.</p>
+<p><u>言而总之: 设计模式即为艺术, 让它美起来</u></p>
+<h1 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念:"></a><strong>概念:</strong></h3><p><strong>一个目标</strong>物件管理<strong>所有</strong>相依于它的<strong>观察者</strong>物件，并且在它本身的状态改变时<strong>主动</strong>发出通知。这通常透过呼叫各观察者所提供的方法来实现。此种模式通常被用来实现事件处理系统。</p>
+<p>分析: </p>
+<p>1). 适用一对多-&gt;所以体现了它的作用价值或者说意义</p>
+<p>2). 主动发送自己的状态变化-&gt;能与观察者分离逻辑, 让其只需要管好自己需要做的事情即可, 懒即为创造</p>
+<p>3). 缺点: 需要直接管理一个含所有观察者的集合, 可能会泄露UI实例</p>
+<h1 id="与订阅者模式的异同"><a href="#与订阅者模式的异同" class="headerlink" title="与订阅者模式的异同"></a>与订阅者模式的异同</h1><p><strong>观察者模式</strong>的角色为观察者(observer)和主题(subject)对象，observer需要观察subject时，需先到subject里面进行注册（subject对象持有observer对象的集合句柄），然后，当subject对象的内部状态发生变化时，把这个变化通知所有的观察者。 </p>
+<p><strong>发布-订阅模式</strong>的角色为发布者(publisher)和订阅者(subscriber)，pub和sub之间没有直接的耦合关系，pub发布一个消息事件(event)，sub订阅感兴趣的消息事件，sub也可以取消订阅。</p>
+<p>图见<a href="https://www.cnblogs.com/lovesong/p/5272752.html" target="_blank" rel="noopener">这</a></p>
+<p>分析:<br>1). 都有事件接受者和发出者, 发出者作为目标主体将状态变化发出, 观察者接收到事件然后处理<br>2). 两种模式都可以用于松散耦合，改进代码管理和潜在的复用<br>3). 订阅模式多了一个调度中心, 它才是注册观察者的地方, 所以两者没了依赖, 正应了 中间层就能解耦合的话</p>
+<h1 id="UML类图的基本知识"><a href="#UML类图的基本知识" class="headerlink" title="UML类图的基本知识"></a>UML类图的基本知识</h1><p>在UML类图中，常见的有以下几种关系: </p>
+<ul>
+<li>泛化（Generalization）: 指的是一个类class继承另外的一个类class, 本身也可新增功能. 符号: 空心三角箭头+实线, 指向父类(寻找基类)</li>
+<li>实现（Realization）: 指的是一个class类实现interface接口. 符号: 空心三角箭头+虚线, 指向接口(寻找接口定义) </li>
+<li>关联（Association）: 体现的是两个类或类与接口之间语义级别的一种强依赖关系(成员变量), 关系比依赖更强、不存在依赖关系的偶然性、关系也不是临时性的，一般是长期性的，而且双方的关系一般是平等的、关联可以是单向、双向的. 符号: 一角箭头+实线(双向时无需箭头), 指向持有者(寻找使用者)</li>
+<li>聚合（Aggregation）: 是关联关系的一种特例，他体现的是整体与部分、拥有的关系, 此时整体与部分之间是可分离的(可分离只是一种能力, 关系强度仍然比关联强)，他们可以具有各自的生命周期，部分可以属于多个整体对象，也可以为多个整体对象共享. 符号: 空心菱形+实线+一角箭头，指向持有者(寻找使用者)</li>
+<li>组合（Composition）: 也是关联关系的一种特例，他体现的是一种contains-a的关系，这种关系比聚合更强，也称为强聚合. 他同样体现整体与部分间的关系，但此时整体与部分是不可分的，整体的生命周期结束也就意味着部分的生命周期结束. 符号: 实心菱形+实线+一角箭头，指向持有者(寻找使用者)</li>
+<li>依赖（Dependency）: 就是一个类A使用到了另一个类B(局部变量、方法的参数或者对静态方法的调用), 使用关系是具有偶然性的、临时性的、非常弱的. 符号: 一角箭头+虚线, 指向被使用者(寻找依赖类)</li>
+</ul>
+<p><u> (泛化 = 实现) &gt; 组合 &gt; 聚合 &gt; 关联 &gt; 依赖。</u></p>
+<p>图见<a href="https://www.cnblogs.com/hoojo/p/uml_design.html#top" target="_blank" rel="noopener">这</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/14/Six-Object-oriented-design-principle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/14/Six-Object-oriented-design-principle/" itemprop="url">Six Object-Oriented Design Principles</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T20:30:29+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一-OOP六大设计原则"><a href="#一-OOP六大设计原则" class="headerlink" title="一. OOP六大设计原则"></a><strong>一. OOP六大设计原则</strong></h1><ol>
+<li><p>单一职责原则Principle SRP:  一个类仅有一个变化因素, 否则就应将其拆分</p>
+</li>
+<li><p>开闭原则Principle OCP: (实现类)修改要封闭, 扩展是开放的(新建实现类)</p>
+</li>
+<li><p>里氏替换原则Principle LSP: 使用基类的地方要能使用子类, 反之不行(Java的继承就能实现)</p>
+</li>
+<li><p>依赖倒置原则Principle DIP: 高层和底层都依赖抽象, 且抽象不应该依赖细节</p>
+</li>
+<li><p>接口隔离原则Principle ISP: 调用端(客户端)只依赖最小的接口</p>
+</li>
+<li><p>迪米特原则Principle LOD: 只和直接朋友通信, 对被调用模块了解最少</p>
+</li>
+</ol>
+<p><u>六大原则作用: 降低 <strong>耦合</strong> 度, 利于开发 <strong>维护</strong> 重用, 工作 <strong>效率</strong> 高; <strong>易读 </strong>易理解.</u><br>下次写写设计模式…维护性, 扩展性, 易用性, 性能, 复用</p>
+<h1 id="二-Design-Pattern设计模式"><a href="#二-Design-Pattern设计模式" class="headerlink" title="二. Design Pattern设计模式"></a><strong>二. Design Pattern设计模式</strong></h1><p>针对特定问题如何组织类、对象和接口之间的关系，对在某种环境中反复出现的问题以及解决该问题的方案的描述. 框架是骨架，设计模式就是血和肉(灵魂); 框架直接拿来用小修小改, 设计模式解决编程的具体问题，代码结构的小技巧.</p>
+<p><strong>1. Platform</strong>平台</p>
+<p> 类似框架但是结合了架构的考虑, 它是一种应用. 针对企业用户, 整合同类技术或服务, 同时需要考虑如何进行设计. 譬如支付平台Ping++, 客服平台Udesk</p>
+<p><strong>2. Software Architecture</strong>软件架构</p>
+<p>It refers to the fundamental structures of a software system, the discipline of creating such structures, and the documentation of these structures. , 简称”架构”或者”建筑”, 是软件系统的基础结构和生成基础结构的原理以及结构的文档. 其实简而言之就是设计蓝图. 如: 分层架构(3或4层, 表现层, 业务层, 持久层, 数据库)<br>它的<a href="[http://www.infoq.com/cn/articles/an-informal-discussion-on-architecture-part01]">责任</a>: </p>
+<ol>
+<li>确定目标系统的边界</li>
+<li>以某个原则切分系统, 其原则应满足利于不同角色并行或者穿行工作, 并适当考虑提高效率</li>
+<li>对切分后的部分设立沟通机制</li>
+<li>利用沟通机制进行有效联系, 合并组装成为一个整体, 完成目标系统的所有工作</li>
+</ol>
+<p><strong>3. Framework</strong>框架</p>
+<p>为软件程师提供的组件, 它提取特定领域的软件共性部分作为一个体系, 是一个整体或者部分系统的可重用设计, 多为半成品可以修改定制, 以实现具体功能和效果的应用系统. 如: Zxing库.</p>
+<p><u>总结: 设计模式是代码级复用、框架是模块级复用、架构是系统级复用、平台是企业应用级复用</u></p>
+<h1 id="三-基础概念"><a href="#三-基础概念" class="headerlink" title="三. 基础概念:"></a><strong>三. 基础概念:</strong></h1><h3 id="A-模式相关"><a href="#A-模式相关" class="headerlink" title="A. 模式相关"></a><strong>A. 模式相关</strong></h3><p><strong>Pattern</strong>: 事物的标准样式, 是一种认识论意义上的确定思维方式(即解决某一类问题的方法论). 从不断重复出现的事件中发现和抽象出的规律，是解决问题形成经验的高度归纳总结。只要是一再重复出现的事物，就可能存在某种模式。你把解决某类问题的方法总结归纳到理论高度, 那就是模式(架构采用某种方法论即是架构模式)</p>
+<p><strong>Software Pattern</strong>: 适用于开发软件的规律或标准或经验, 包括: 架构模式(也称结构模式或体系结构模, 如MVP), 设计模式等。体系架构模式是一个通用的、可重用的解决方案，描述软件系统基本的结构化组织方案，是最高等级模式，明确了一个应用的基本结构, 用于解决在给定上下文中的软件体系结构中经常出现的问题。(体系)架构模式与(软件)设计模式类似, 但具有更广泛的范围.</p>
+<p><a href="https://www.cnblogs.com/IcanFixIt/p/7518146.html" target="_blank" rel="noopener"><strong>10种常见的架构模式:</strong></a></p>
+<p>分层模式<br>客户端-服务器模式<br>主从设备模式<br>管道-过滤器模式<br>代理模式<br>点对点模式<br>事件总线模式<br>模型-视图-控制器模式<br>黑板模式<br>解释器模式</p>
+<p><strong>架构模式分类:</strong> </p>
+<p>混沌到结构 （层、管道和过滤器、黑板模式）<br>分布式系统 （主要：代理模式 次要：微核模式、管道和过滤器模式）<br>交互式系统 （MVC、PAC、MVP）<br>适应性系统 （映像模式、微核模式）</p>
+<p><strong>Design Pattern</strong>: 在某种环境中<strong>反复出现</strong>的问题以及解决该问题的<strong>方案</strong>的描述</p>
+<h3 id="B-架构相关"><a href="#B-架构相关" class="headerlink" title="B. 架构相关:"></a><strong>B. 架构相关:</strong></h3><p>1)System: <strong>系统</strong>, 体系. 泛指部分组合而成的整体，是不同系统组成的系统, 强调部分与整体的关系</p>
+<p>2)Architecture: 体系<strong>结构</strong>, 架构. 强调系统的组成, 包括构成部件以及部件之间的联系</p>
+<p>3)System Architecture: 系统体系结构. 是一个综合模型，系统体系结构是由许多结构要素及各种视图(View)或观点所组成的. 所以，系统体系结构是一个<strong>综合各种观点</strong>的模型，用来完整描述整个系统。</p>
+<p>4)Software Architecture: 软件体系结构.是具有一定形式的结构化元素，即构件的集合，包括处理构件、数据构件和连接构件。处理构件负责对数据进行加工，数据构件是被加工的信息，连接构件把体系结构的不同部分组组合连接起来。由于软件系统具有的一些共通特性，能够促进大规模软件的系统级复用。</p>
+<p>5)System Architects: 系统架构师</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/21/a-small-leak/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1015,7 +1770,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1028,7 +1783,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
