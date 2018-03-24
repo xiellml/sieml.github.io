@@ -586,9 +586,12 @@
 <p><img src="/2018/03/18/Graph/20170525194435220.png" alt="图-1"></p>
 <p>图的邻接矩阵存储的结构：</p>
 <p>[objc] view plain copy</p>
-<h1 id="define-maxvex-100"><a href="#define-maxvex-100" class="headerlink" title="define maxvex 100"></a>define maxvex 100</h1><p>typedef struct<br>{<br>char vexs[maxvex];<br>int arc[maxvex][maxvex];<br>int vertex,edges;<br>}MGraph;<br>无向图的创建代码：</p>
+<p>define maxvex 100</p>
+<p>typedef struct<br>{<br>char vexs[maxvex];<br>int arc[maxvex][maxvex];<br>int vertex,edges;<br>}MGraph;<br>无向图的创建代码：</p>
 <p>[objc] view plain copy</p>
-<h1 id="define-maxvexs-100"><a href="#define-maxvexs-100" class="headerlink" title="define maxvexs 100"></a>define maxvexs 100</h1><h1 id="define-infinity-65535-用65535来表示∞"><a href="#define-infinity-65535-用65535来表示∞" class="headerlink" title="define infinity 65535//用65535来表示∞"></a>define infinity 65535//用65535来表示∞</h1><p>typedef struct<br>{  </p>
+<p>define maxvexs 100</p>
+<p>define infinity 65535//用65535来表示∞</p>
+<p>typedef struct<br>{  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char vexs[maxvexs];  </span><br><span class="line">int arc[maxvexs][maxvexs];  </span><br><span class="line">int vertexes,edges;</span><br></pre></td></tr></table></figure>
 <p>}mgraph;  </p>
 <p>void creatgraph(mgraph *g)<br>{  </p>
