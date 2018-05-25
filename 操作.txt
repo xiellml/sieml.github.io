@@ -2,3 +2,4 @@ hexo new xxx 新建文章
 hexo g 生成
 hexo s 本地部署  localhost:4000本地浏览
 hexo d 远程部署
+
