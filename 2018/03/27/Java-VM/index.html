@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="jvm," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="注： 转自Java JVM 运行机制及基本原理 - 韦庆明 将知识用文字记录下来，供以后温故知新。 JVM的基础概念JVM的中文名称叫Java虚拟机，它是由软件技术模拟出计算机运行的一个虚拟的计算机。 JVM也充当着一个翻译官的角色，我们编写出的Java程序，是不能够被操作系统所直接识别的，这时候JVM的作用就体现出来了，它负责把我们的程序翻译给系统“听”，告诉它我们的程序需要做什么操作。 我们都">
+<meta name="keywords" content="jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java VM">
+<meta property="og:url" content="http://yoursite.com/2018/03/27/Java-VM/index.html">
+<meta property="og:site_name" content="Sand with the Wind">
+<meta property="og:description" content="注： 转自Java JVM 运行机制及基本原理 - 韦庆明 将知识用文字记录下来，供以后温故知新。 JVM的基础概念JVM的中文名称叫Java虚拟机，它是由软件技术模拟出计算机运行的一个虚拟的计算机。 JVM也充当着一个翻译官的角色，我们编写出的Java程序，是不能够被操作系统所直接识别的，这时候JVM的作用就体现出来了，它负责把我们的程序翻译给系统“听”，告诉它我们的程序需要做什么操作。 我们都">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2018/03/27/Java-VM/jvm_st.jpg">
+<meta property="og:updated_time" content="2018-05-25T04:06:24.915Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java VM">
+<meta name="twitter:description" content="注： 转自Java JVM 运行机制及基本原理 - 韦庆明 将知识用文字记录下来，供以后温故知新。 JVM的基础概念JVM的中文名称叫Java虚拟机，它是由软件技术模拟出计算机运行的一个虚拟的计算机。 JVM也充当着一个翻译官的角色，我们编写出的Java程序，是不能够被操作系统所直接识别的，这时候JVM的作用就体现出来了，它负责把我们的程序翻译给系统“听”，告诉它我们的程序需要做什么操作。 我们都">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/27/Java-VM/jvm_st.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/27/Java-VM/"/>
+
+
+
+
+
+  <title>Java VM | Sand with the Wind</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sand with the Wind</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Java-VM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java VM</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T11:55:44+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>注： 转自<a href="https://zhuanlan.zhihu.com/p/25713880" target="_blank" rel="noopener">Java JVM 运行机制及基本原理 - 韦庆明</a></p>
+<p>将知识用文字记录下来，供以后温故知新。</p>
+<h2 id="JVM的基础概念"><a href="#JVM的基础概念" class="headerlink" title="JVM的基础概念"></a><strong>JVM的基础概念</strong></h2><p>JVM的中文名称叫Java虚拟机，它是由软件技术模拟出计算机运行的一个虚拟的计算机。</p>
+<p>JVM也充当着一个翻译官的角色，我们编写出的Java程序，是不能够被操作系统所直接识别的，这时候JVM的作用就体现出来了，它负责把我们的程序翻译给系统“听”，告诉它我们的程序需要做什么操作。</p>
+<p>我们都知道Java的程序需要经过编译后，产生.Class文件，JVM才能识别并运行它，JVM针对每个操作系统开发其对应的解释器，所以只要其操作系统有对应版本的JVM，那么这份Java编译后的代码就能够运行起来，这就是Java能一次编译，到处运行的原因。</p>
+<h2 id="JVM的生命周期"><a href="#JVM的生命周期" class="headerlink" title="JVM的生命周期"></a><strong>JVM的生命周期</strong></h2><p>JVM在Java程序开始执行的时候，它才运行，程序结束的时它就停止。</p>
+<p>一个Java程序会开启一个JVM进程，如果一台机器上运行三个程序，那么就会有三个运行中的JVM进程。</p>
+<p>JVM中的线程分为两种：守护线程和普通线程</p>
+<p>守护线程是JVM自己使用的线程，比如垃圾回收（GC）就是一个守护线程。</p>
+<p>普通线程一般是Java程序的线程，只要JVM中有普通线程在执行，那么JVM就不会停止。</p>
+<p>权限足够的话，可以调用exit()方法终止程序。</p>
+<h2 id="JVM的结构体系"><a href="#JVM的结构体系" class="headerlink" title="JVM的结构体系"></a><strong>JVM的结构体系</strong></h2><p><img src="/2018/03/27/Java-VM/jvm_st.jpg" alt="img"></p>
+<h2 id="JVM的启动过程"><a href="#JVM的启动过程" class="headerlink" title="JVM的启动过程"></a><strong>JVM的启动过程</strong></h2><p><strong>1、JVM的装入环境和配置</strong></p>
+<p>在学习这个之前，我们需要了解一件事情，就是JDK和JRE的区别。</p>
+<p>JDK是面向开发人员使用的SDK，它提供了Java的开发环境和运行环境，JDK中包含了JRE。</p>
+<p>JRE是Java的运行环境，是面向所有Java程序的使用者，包括开发者。</p>
+<p><strong>JRE = 运行环境 = JVM</strong>。</p>
+<p>如果安装了JDK，会发现电脑中有两套JRE，一套位于/Java/jre…/下，一套位于/Java/jdk…/jre下。那么问题来了，一台机器上有两套以上JRE，谁来决定运行那一套呢？这个任务就落到java.exe身上，java.exe的任务就是找到合适的JRE来运行java程序。</p>
+<p>java.exe按照以下的顺序来选择JRE：</p>
+<p>1、自己目录下有没有JRE</p>
+<p>2、父目录下有没有JRE</p>
+<p>3、查询注册表： HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Runtime Environment\”当前JRE版本号”\JavaHome</p>
+<p>这几步的主要核心是为了找到JVM的绝对路径。</p>
+<p><strong>jvm.cfg</strong>的路径为：JRE路径\lib\”CPU架构”\jvm.fig</p>
+<p><strong>jvm.cfg</strong>的内容大致如下：</p>
+<p>-client KNOWN</p>
+<p>-server KNOWN</p>
+<p>-hotspot ALIASED_TO -client</p>
+<p>-classic WARN</p>
+<p>-native ERROR</p>
+<p>-green ERROR</p>
+<p>KNOWN 表示存在 、IGNORE 表示不存在 、ALIASED_TO 表示给别的JVM去一个别名</p>
+<p>WARN 表示不存在时找一个替代 、ERROR 表示不存在抛出异常</p>
+<p>2、装载JVM</p>
+<p>通过第一步找到JVM的路径后，Java.exe通过LoadJavaVM来装入JVM文件。<br>LoadLibrary装载JVM动态连接库，然后把JVM中的到处函数JNI_CreateJavaVM和JNI_GetDefaultJavaVMIntArgs 挂接到InvocationFunction 变量的CreateJavaVM和GetDafaultJavaVMInitArgs 函数指针变量上。JVM的装载工作完成。<br><strong>3、初始化JVM，获得本地调用接口</strong></p>
+<p>调用InvocationFunction -&gt; CreateJavaVM也就是JVM中JNI_CreateJavaVM方法获得JNIEnv结构的实例。<br><strong>4、运行Java程序</strong></p>
+<p>JVM运行Java程序的方式有两种：jar包 与 Class<br><strong>运行jar 的时候</strong>，Java.exe调用GetMainClassName函数，该函数先获得JNIEnv实例然后调用JarFileJNIEnv类中getManifest()，从其返回的Manifest对象中取getAttrebutes(“Main-Class”)的值，即jar 包中文件：META-INF/MANIFEST.MF指定的Main-Class的主类名作为运行的主类。之后main函数会调用Java.c中LoadClass方法装载该主类（使用JNIEnv实例的FindClass）。<br><strong>运行Class的时候</strong>，main函数直接调用Java.c中的LoadClass方法装载该类。</p>
+<h2 id="Class文件"><a href="#Class文件" class="headerlink" title="Class文件"></a><strong>Class文件</strong></h2><p>Class文件由Java编译器生成，我们创建的.Java文件在经过编译器后，会变成.Class的文件，这样才能被JVM所识别并运行。</p>
+<h2 id="类加载子系统"><a href="#类加载子系统" class="headerlink" title="类加载子系统"></a><strong>类加载子系统</strong></h2><p>类加载子系统也可以称之为类加载器，JVM默认提供三个类加载器：</p>
+<p><strong>1、BootStrap ClassLoader</strong> ：称之为启动类加载器，是最顶层的类加载器，<strong>负责加载JDK中的核心类库，如 rt.jar、resources.jar、charsets.jar等</strong>。</p>
+<p><strong>2、Extension ClassLoader</strong>：称之为扩展类加载器，负责加载Java的扩展类库，默认加载$JAVA_HOME中jre/lib/*.jar 或 -Djava.ext.dirs指定目录下的jar包。</p>
+<p><strong>3、App ClassLoader</strong>：称之为系统类加载器，负责加载应用程序classpath目录下所有jar和class文件。</p>
+<p>除了Java默认提供的三个ClassLoader（加载器）之外，我们还可以根据自身需要自定义ClassLoader，自定义ClassLoader必须继承java.lang.ClassLoader 类。<strong>除了BootStrap ClassLoader 之外</strong>的另外两个默认加载器都是继承自java.lang.ClassLoader 。BootStrap ClassLoader 不是一个普通的Java类，它底层由C++编写，已嵌入到了JVM的内核当中，当JVM启动后，BootStrap ClassLoader 也随之启动，负责加载完核心类库后，并构造Extension ClassLoader 和App ClassLoader 类加载器。</p>
+<p>类加载器子系统不仅仅负责定位并加载类文件，它还严格按照以下步骤做了很多事情：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、加载：寻找并导入Class文件的二进制信息</span><br><span class="line">2、连接：进行验证、准备和解析</span><br><span class="line">     1）验证：确保导入类型的正确性</span><br><span class="line">     2）准备：为类型分配内存并初始化为默认值</span><br><span class="line">     3）解析：将字符引用解析为直接引用</span><br><span class="line">3、初始化：调用Java代码，初始化类变量为指定初始值</span><br></pre></td></tr></table></figure>
+<p>详细请参考另一篇文章：<a href="https://zhuanlan.zhihu.com/p/25228545" target="_blank" rel="noopener">Java类加载机制 - 知乎专栏</a></p>
+<h2 id="方法区（Method-Area）"><a href="#方法区（Method-Area）" class="headerlink" title="方法区（Method Area）"></a><strong>方法区（Method Area）</strong></h2><p>在JVM中，<strong>类型信息</strong>和<strong>类静态变量</strong>都保存在方法区中，类型信息是由类加载器在类加载的过程中从类文件中提取出来的信息。</p>
+<p>需要注意的一点是，<strong>常量池也存放于方法区中</strong>。</p>
+<p>程序中所有的线程共享一个方法区，所以访问方法区的信息必须确保线程是安全的。如果有两个线程同时去加载一个类，那么只能有一个线程被允许去加载这个类，另一个必须等待。</p>
+<p>在程序运行时，方法区的大小是可以改变的，程序在运行时可以扩展。</p>
+<p>方法区也可以被垃圾回收，但条件非常严苛，必须在该类没有任何引用的情况下，详情可以参考另一篇文章：<a href="https://zhuanlan.zhihu.com/p/25539690" target="_blank" rel="noopener">Java性能优化之JVM GC（垃圾回收机制） - 知乎专栏</a></p>
+<p><strong>类型信息包括什么？</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1、类型的全名（The fully qualified name of the type）</span><br><span class="line"></span><br><span class="line">2、类型的父类型全名（除非没有父类型，或者父类型是java.lang.Object）（The fully qualified name of the typeís direct superclass）</span><br><span class="line"></span><br><span class="line">3、该类型是一个类还是接口（class or an interface）（Whether or not the type is a class ）</span><br><span class="line"></span><br><span class="line">4、类型的修饰符（public，private，protected，static，final，volatile，transient等）（The typeís modifiers）</span><br><span class="line"></span><br><span class="line">5、所有父接口全名的列表（An ordered list of the fully qualified names of any direct superinterfaces）</span><br><span class="line"></span><br><span class="line">6、类型的字段信息（Field information）</span><br><span class="line"></span><br><span class="line">7、类型的方法信息（Method information）</span><br><span class="line"></span><br><span class="line">8、所有静态类变量（非常量）信息（All class (static) variables declared in the type, except constants）</span><br><span class="line"></span><br><span class="line">9、一个指向类加载器的引用（A reference to class ClassLoader）</span><br><span class="line"></span><br><span class="line">10、一个指向Class类的引用（A reference to class Class）</span><br><span class="line"></span><br><span class="line">11、基本类型的常量池（The constant pool for the type）</span><br></pre></td></tr></table></figure>
+<p><strong>方法列表（Method Tables）</strong></p>
+<p>为了更高效的访问所有保存在方法区中的数据，在方法区中，除了保存上边的这些类型信息之外，还有一个为了加快存取速度而设计的数据结构：方法列表。每一个被加载的非抽象类，Java虚拟机都会为他们产生一个方法列表，这个列表中保存了这个类可能调用的所有实例方法的引用，保存那些父类中调用的方法。</p>
+<h2 id="Java堆（JVM堆、Heap）"><a href="#Java堆（JVM堆、Heap）" class="headerlink" title="Java堆（JVM堆、Heap）"></a><strong>Java堆（JVM堆</strong>、<strong>Heap）</strong></h2><p>当Java<strong>创建一个类的实例对象或者数组时，都在堆中为新的对象分配内存</strong>。</p>
+<p>虚拟机中只有一个堆，程序中所有的线程都共享它。</p>
+<p>堆占用的内存空间是最多的。</p>
+<p>堆的存取类型为管道类型，先进先出。</p>
+<p>在程序运行中，可以动态的分配堆的内存大小。</p>
+<p>堆的内存资源回收是交给JVM GC进行管理的，详情请参考：<a href="https://zhuanlan.zhihu.com/p/25539690" target="_blank" rel="noopener">Java性能优化之JVM GC（垃圾回收机制） - 知乎专栏</a></p>
+<h2 id="Java栈（JVM栈、Stack）"><a href="#Java栈（JVM栈、Stack）" class="headerlink" title="Java栈（JVM栈、Stack）"></a><strong>Java栈（JVM栈、Stack）</strong></h2><p>在Java栈中<strong>只保存基础数据类型</strong>（<strong>参考：</strong><a href="https://zhuanlan.zhihu.com/p/25439066" target="_blank" rel="noopener">Java 基本数据类型 - 四类八种 - 知乎专栏</a>）和自定义对象的<strong>引用</strong>，<strong>注意只是对象的引用而不是对象本身哦</strong>，对象是保存在堆区中的。</p>
+<p><strong>拓展知识：像String、Integer、Byte、Short、Long、Character、Boolean这六个属于包装类型，它们是存放于堆中的。</strong></p>
+<p>栈的存取类型为类似于水杯，先进后出。</p>
+<p>栈内的数据在超出其作用域后，会被自动释放掉，<strong>它不由JVM GC管理</strong>。</p>
+<p>每一个线程都包含一个栈区，每个栈中的数据都是私有的，其他栈不能访问。</p>
+<p>每个线程都会建立一个操作栈，每个栈又包含了若干个栈帧，每个栈帧对应着每个方法的每次调用，每个栈帧包含了三部分：</p>
+<p>局部变量区（方法内基本类型变量、变量对象指针）</p>
+<p>操作数栈区（存放方法执行过程中产生的中间结果）</p>
+<p>运行环境区（动态连接、正确的方法返回相关信息、异常捕捉）</p>
+<h2 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a><strong>本地方法栈</strong></h2><p>本地方法栈的功能和JVM栈非常类似，用于存储本地方法的局部变量表，本地方法的操作数栈等信息。</p>
+<p>栈的存取类型为类似于水杯，先进后出。</p>
+<p>栈内的数据在超出其作用域后，会被自动释放掉，<strong>它不由JVM GC管理。</strong></p>
+<p>每一个线程都包含一个栈区，每个栈中的数据都是私有的，其他栈不能访问。</p>
+<p>本地方法栈是在程序调用或JVM调用<strong>本地方法接口（Native）</strong>时候启用。</p>
+<p>本地方法都不是使用Java语言编写的，比如使用C语言编写的本地方法，本地方法也不由JVM去运行，所以本地方法的运行不受JVM管理。</p>
+<p>HotSpot VM将本地方法栈和JVM栈合并了。</p>
+<h2 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a><strong>程序计数器</strong></h2><p>在JVM的概念模型里，字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令。分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。</p>
+<p>JVM的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，为了各条线程之间的切换后计数器能恢复到正确的执行位置，所以<strong>每条线程都会有一个独立的程序计数器</strong>。</p>
+<p>程序计数器仅占很小的一块内存空间。</p>
+<p>当线程正在执行一个Java方法，程序计数器记录的是正在执行的JVM字节码指令的地址。如果正在执行的是一个Natvie（本地方法），那么这个计数器的值则为空（Underfined）。</p>
+<p>程序计数器这个内存区域是唯一一个在JVM规范中没有规定任何OutOfMemoryError（内存不足错误）的区域。</p>
+<h2 id="JVM执行引擎"><a href="#JVM执行引擎" class="headerlink" title="JVM执行引擎"></a><strong>JVM执行引擎</strong></h2><p>Java虚拟机相当于一台虚拟的“物理机”，这两种机器都有代码执行能力，其区别主要是物理机的执行引擎是直接建立在处理器、硬件、指令集和操作系统层面上的。而JVM的执行引擎是自己实现的，因此程序员可以自行制定指令集和执行引擎的结构体系，因此能够执行那些不被硬件直接支持的指令集格式。</p>
+<p>在JVM规范中制定了虚拟机字节码执行引擎的概念模型，这个模型称之为JVM执行引擎的统一外观。JVM实现中，可能会有两种的执行方式：解释执行（通过解释器执行）和编译执行（通过即时编译器产生本地代码）。有些虚拟机只采用一种执行方式，有些则可能同时采用两种，甚至有可能包含几个不同级别的编译器执行引擎。</p>
+<p><strong>输入的是字节码文件、处理过程是等效字节码解析过程、输出的是执行结果</strong>。在这三点上每个JVM执行引擎都是一致的。</p>
+<h2 id="本地方法接口（JNI）"><a href="#本地方法接口（JNI）" class="headerlink" title="本地方法接口（JNI）"></a><strong>本地方法接口（JNI）</strong></h2><p>JNI是Java Native Interface的缩写，它提供了若干的API实现了Java和其他语言的通信（主要是C和C++）。</p>
+<p><strong>JNI的适用场景</strong></p>
+<p>当我们有一些旧的库，已经使用C语言编写好了，如果要移植到Java上来，非常浪费时间，而JNI可以支持Java程序与C语言编写的库进行交互，这样就不必要进行移植了。或者是与硬件、操作系统进行交互、提高程序的性能等，都可以使用JNI。需要注意的一点是需要保证本地代码能工作在任何Java虚拟机环境。</p>
+<p><strong>JNI的副作用</strong></p>
+<p>一旦使用JNI，Java程序将丢失了Java平台的两个优点：</p>
+<p>1、程序不再跨平台，要想跨平台，必须在不同的系统环境下程序编译配置本地语言部分。</p>
+<p>2、程序不再是绝对安全的，本地代码的使用不当可能会导致整个程序崩溃。一个通用规则是，调用本地方法应该集中在少数的几个类当中，这样就降低了Java和其他语言之间的耦合。</p>
+<h2 id="JVM-GC（垃圾回收机制）"><a href="#JVM-GC（垃圾回收机制）" class="headerlink" title="JVM GC（垃圾回收机制）"></a><strong>JVM GC（垃圾回收机制）</strong></h2><p>详情请参考我的另外一篇文章：<a href="https://zhuanlan.zhihu.com/p/25539690" target="_blank" rel="noopener">Java性能优化之JVM GC（垃圾回收机制） - 知乎专栏</a></p>
+<h2 id="JVM-常量池"><a href="#JVM-常量池" class="headerlink" title="JVM 常量池"></a><strong>JVM 常量池</strong></h2><p>JVM常量池也称之为运行时常量池，<strong>它是方法区（Method Area）的一部分</strong>。<strong>用于存放编译期间生成的各种字面量和符号引用。运行时常量池不要求一定只有在编译器产生的才能进入，运行期间也可以将新的常量放入池中，这种特性被开发人员利用比较多的就是String.intern()方法。</strong></p>
+<p>由<strong>“**</strong>用于存放编译期间生成的各种字面量和符号引用”<strong>这句话可见，</strong>常量池中存储的是对象的引用而不是对象的本身**。</p>
+<p><strong>常量池的好处</strong></p>
+<p>常量池是为了避免频繁的创建和销毁对象而影响系统性能，它也实现了对象的共享。</p>
+<p>例如字符串常量池：在编译阶段就把所有字符串文字放到一个常量池中。</p>
+<p>1、节省内存空间：常量池中如果有对应的字符串，那么则返回该对象的引用，从而不必再次创建一个新对象。</p>
+<p>2、节省运行时间：比较字符串时，==比equals()快。对于两个引用变量，==判断引用是否相等，也就可以判断实际值是否相等。</p>
+<p><strong>双等号（==）的含义</strong></p>
+<p>基本数据类型之间使用双等号，比较的是数值。</p>
+<p>复合数据类型（类）之间使用双等号，比较的是对象的引用地址是否相等。</p>
+<p><strong>八种基本类型的包装类和常量池</strong></p>
+<p>Byte、Short、Integer、Long、Character、Boolean、String这7种包装类都各自实现了自己的常量池。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//例子：</span><br><span class="line">Integer i1 = 20;</span><br><span class="line">Integer i2 = 20;</span><br><span class="line">System.out.println(i1=i2);//输出TRUE</span><br></pre></td></tr></table></figure>
+<p>Byte、Short、Integer、Long、Character这5种包装类都默认创建了数值[-128 , 127]的缓存数据。<strong>当对这5个类型的数据不在这个区间内的时候，将会去创建新的对象，并且不会将这些新的对象放入常量池中。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//IntegerCache.low = -128</span><br><span class="line">//IntegerCache.high = 127</span><br><span class="line">public static Integer valueOf(int i) &#123;</span><br><span class="line">        if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">            return IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">        return new Integer(i);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//例子</span><br><span class="line">Integer i1 = 200;</span><br><span class="line">Integer i2 = 200;</span><br><span class="line">System.out.println(i1==i2);//返回FALSE</span><br></pre></td></tr></table></figure>
+<p><strong>Float 和Double 没有实现常量池</strong>。</p>
+<p><strong>String包装类与常量池</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String str1 = &quot;aaa&quot;;</span><br></pre></td></tr></table></figure>
+<p>当以上代码运行时，JVM会到字符串常量池查找 “aaa” 这个字面量对象是否存在？</p>
+<p><strong>存在</strong>：则返回该对象的引用给变量 <strong>str1</strong> 。</p>
+<p><strong>不存在</strong>：则在堆中创建一个相应的对象，将创建的对象的引用存放到常量池中，同时将引用返回给变量 <strong>str1</strong> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str1 = &quot;aaa&quot;;</span><br><span class="line">String str2 = &quot;aaa&quot;;</span><br><span class="line">System.out.println(str1 == str2);//返回TRUE</span><br></pre></td></tr></table></figure>
+<p>因为变量<strong>str1</strong> 和<strong>str2</strong> 都指向同一个对象，所以返回true。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str3 = new String(&quot;aaa&quot;);</span><br><span class="line">System.out.println(str1 == str3);//返回FALSE</span><br></pre></td></tr></table></figure>
+<p>当我们使用了<strong>new</strong>来构造字符串对象的时候，不管字符串常量池中是否有相同内容的对象的引用，新的字符串对象都会创建。因为两个指向的是不同的对象，所以返回FALSE 。</p>
+<p><strong>String.intern()方法</strong></p>
+<p>对于使用了new 创建的字符串对象，如果想要将这个对象引用到字符串常量池，可以使用intern() 方法。</p>
+<p>调用intern() 方法后，检查字符串常量池中是否有这个对象的引用，并做如下操作：</p>
+<p>存在：直接返回对象引用给变量。</p>
+<p>不存在：将这个对象引用加入到常量池，再返回对象引用给变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String interns = str3.intern();</span><br><span class="line">System.out.println(interns == str1);//返回TRUE</span><br></pre></td></tr></table></figure>
+<p>假定常量池中都没有以上字面量的对象，以下创建了多少个对象呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str4 = &quot;abc&quot;+&quot;efg&quot;;</span><br><span class="line">String str5 = &quot;abcefg&quot;;</span><br><span class="line">System.out.println(str4 == str5);//返回TRUE</span><br></pre></td></tr></table></figure>
+<p>答案是三个。第一个：”abc” ，第一个：”efg”，第三个：”abc”+”efg”（”abcefg”）</p>
+<p>String str5 = “abcefg”; 这句代码并没有创建对象，它从常量池中找到了”abcefg” 的引用，所有str4 == str5 返回TRUE，因为它们都指向一个相同的对象。</p>
+<p><strong>什么情况下会将字符串对象引用自动加入字符串常量池？</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//只有在这两种情况下会将对象引用自动加入到常量池</span><br><span class="line">String str1 = &quot;aaa&quot;;</span><br><span class="line">String str2 = &quot;aa&quot;+&quot;a&quot;;</span><br><span class="line"></span><br><span class="line">//其他方式下都不会将对象引用自动加入到常量池，如下：</span><br><span class="line">String str3 = new String(&quot;aaa&quot;);</span><br><span class="line">String str4 = New StringBuilder(&quot;aa&quot;).append(&quot;a&quot;).toString();</span><br><span class="line">StringBuilder sb = New StringBuilder();</span><br><span class="line">sb.append(&quot;aa&quot;);</span><br><span class="line">sb.append(&quot;a&quot;);</span><br><span class="line">String str5 = sb.toString();</span><br></pre></td></tr></table></figure>
+<p>好了，JVM的基本原理就写到这里，以后更深入的了解后会再来补充。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/27/View-Hierarchy-and-View-Events/" rel="next" title="View Hierarchy and View Events">
+                <i class="fa fa-chevron-left"></i> View Hierarchy and View Events
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/Interview-Resources/" rel="prev" title="Interview Resources">
+                Interview Resources <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Paliy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM的基础概念"><span class="nav-number">1.</span> <span class="nav-text">JVM的基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM的生命周期"><span class="nav-number">2.</span> <span class="nav-text">JVM的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM的结构体系"><span class="nav-number">3.</span> <span class="nav-text">JVM的结构体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM的启动过程"><span class="nav-number">4.</span> <span class="nav-text">JVM的启动过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class文件"><span class="nav-number">5.</span> <span class="nav-text">Class文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载子系统"><span class="nav-number">6.</span> <span class="nav-text">类加载子系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法区（Method-Area）"><span class="nav-number">7.</span> <span class="nav-text">方法区（Method Area）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java堆（JVM堆、Heap）"><span class="nav-number">8.</span> <span class="nav-text">Java堆（JVM堆、Heap）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java栈（JVM栈、Stack）"><span class="nav-number">9.</span> <span class="nav-text">Java栈（JVM栈、Stack）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地方法栈"><span class="nav-number">10.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序计数器"><span class="nav-number">11.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM执行引擎"><span class="nav-number">12.</span> <span class="nav-text">JVM执行引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地方法接口（JNI）"><span class="nav-number">13.</span> <span class="nav-text">本地方法接口（JNI）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-GC（垃圾回收机制）"><span class="nav-number">14.</span> <span class="nav-text">JVM GC（垃圾回收机制）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-常量池"><span class="nav-number">15.</span> <span class="nav-text">JVM 常量池</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Paliy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
