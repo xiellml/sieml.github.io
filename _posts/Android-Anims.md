@@ -22,6 +22,16 @@ Android动画共有**3**大类
 2. **补间动画最常见**  补间补间, 就是把起止帧之间的帧画出来, 改变View的透明度, 位置, 大小, 角度.  它结束后看到的位置不是真实坐标的改变, 只是绘制位置的改变.
 3. **属性动画最强大**  会改变View的真实属性(坐标), 父类为系统抽象类Animator(有500多行)基本不直接使用, 最常用的是子类ValueAnimator和ObjectAnimator.
 
+区别：
+
+（1）属性动画比视图动画更强大，不但可以实现缩放、平移等操作，还可以自己定义动画效果，监听动画的过程，在动画过程中或完成后做响应的动作。
+
+（2）属性动画不但可以作用于View，还能作用于Object。
+
+（3）属性动画利用属性的改变实现动画，而视图动画仅仅改变了view的大小位置，但view真正的属性没有改变。
+
+注：关于真实属性，比如视图动画作用平移之后点击它会无效，因为它的坐标并未真正改变需要点击到原来位置才能生效，而这个问题对于属性动画是不存在的。
+
 
 使用
 ---
@@ -110,7 +120,29 @@ view.startAnimation(anim);
 
 #### 代码: 
 
-1. 只有代码方式: 
+1. XML方式:
+
+```xml
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:ordering="together">
+<objectAnimator
+    android:valueType="floatType"
+    android:propertyName="scaleX"
+    android:valueFrom="1"
+    android:valueTo="2"/>
+<objectAnimator
+    android:propertyName="translationX"
+    android:valueType="floatType"
+    android:valueFrom="0"
+    android:valueTo="200"/>
+</set>
+
+Animator animator= AnimatorInflater.loadAnimator(this,R.animator.animator);
+animator.setTarget(imageView);
+animator.start();
+```
+
+2. 代码方式: 
 
 支持rotation, alpha, translationX, translationY, scaleX, scaleY, 以及使用AnimatorSet组合前者多种基础动画方式
 ```Java
