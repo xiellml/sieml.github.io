@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -68,24 +68,29 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Hexo, Paliy, Sand" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Sand with the Wind" type="application/atom+xml" />
 
 
 
 
 
 
-
-
-
-
+<meta name="description" content="once sunny ten times freezing">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sand with the Wind">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:url" content="http://paliysha.site/page/3/index.html">
 <meta property="og:site_name" content="Sand with the Wind">
+<meta property="og:description" content="once sunny ten times freezing">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sand with the Wind">
+<meta name="twitter:description" content="once sunny ten times freezing">
 
 
 
@@ -93,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.3',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -115,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+  <link rel="canonical" href="http://paliysha.site/page/3/"/>
 
 
 
@@ -157,7 +162,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
       
   </div>
 
@@ -187,6 +192,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -198,9 +213,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -229,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/Custom-View-Components/">
+    <link itemprop="mainEntityOfPage" href="http://paliysha.site/2018/03/18/Observer-Pattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Paliy">
@@ -248,7 +297,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/28/Custom-View-Components/" itemprop="url">Custom View Components</a></h1>
+                <a class="post-title-link" href="/2018/03/18/Observer-Pattern/" itemprop="url">Observer-Pattern</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +309,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-28T11:28:45+08:00">
-                2018-03-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-18T13:06:32+08:00">
+                2018-03-18
               </time>
             
 
@@ -277,6 +326,17 @@
           
 
           
+          
+             <span id="/2018/03/18/Observer-Pattern/" class="leancloud_visitors" data-flag-title="Observer-Pattern">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -300,387 +360,719 @@
       
         
           
-            <p>自定义View为什么这么难？他到底难在哪里，尤其是设计到动效和事件交互的时候。</p>
-<p>那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。</p>
-<h4 id="一-View的构造函数和常见函数"><a href="#一-View的构造函数和常见函数" class="headerlink" title="一. View的构造函数和常见函数"></a>一. View的构造函数和常见函数</h4><p>Constructor to use when creating a view from code.</p>
-<ul>
-<li>View(Context context)</li>
-</ul>
-<p>Constructor that is called when inflating a view from XML.</p>
-<ul>
-<li>View(Context context, @Nullable AttributeSet attrs)</li>
-<li>View(Context context, @Nullable AttributeSet attrs, int defStyleAttr)</li>
-<li>View(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes)</li>
-</ul>
-<p>后面三个方法的逻辑都是同一个，最后系统都会调用最后一个函数（因为其通过this(…)指向了4参函数）.<br>所以：</p>
-<ol>
-<li>如果不对二参数构造方法使用this(x,x,R.attr.CustomizeStyleAttr)进行传参，系统会将第三个参数设为0;</li>
-<li>如果不对三参数构造方法使用this(x,x,x,R.styl.CustomizeStyleRes)进行传参,系统会将第四个参数设为0。</li>
-</ol>
-<p>四参构造如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">View(x,x,x,x)&#123;</span><br><span class="line">    <span class="keyword">this</span>(context);<span class="comment">//首先也需要调用代码形式的构造方法</span></span><br><span class="line">    <span class="keyword">final</span> TypedArray a = context.obtainStyledAttributes(</span><br><span class="line">                attrs, com.android.internal.R.styleable.View, defStyleAttr, defStyleRes);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (mDebugViewAttributes) &#123;</span><br><span class="line">            saveAttributeData(attrs, a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//然后解析处TypeArray里面的参数值</span></span><br><span class="line">    <span class="comment">//其他...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>总结: 解析属性的优先级： xml &gt; style &gt; defStyleAttr &gt; defStyleRes &gt; theme。<br>也就是主题theme作为当前Activity通用系的属性可以单独设置某个样式属性item，但是它只有在defStyleAttr和defStyleRes都为0的情况下才会使用自己的样式属性值。<br><strong>所以我们不用管defStyleAttr和defStyleRes让他采用系统属性（在主题theme更改系统属性值不推荐，除非是为了统一风格，针对单独的某个自定义View做更改会影响其他视图），可以采用自定义属性做到更改想要的效果而不影响其他的View（这个时候需要自己在调用super(…)之后将设定的属性值解析出来然后通过调用属性set函数设置到对应的代码属性之上）。</strong></p>
-<ul>
-<li>onFinishInflate():加载完XML组件后回调</li>
-<li>onSizeChanged():组件大小改变时回调</li>
-<li>onMeasure():回调该方法来进行测量（在该方法中实现对wrap_content支持的代码）</li>
-<li>onLayout():回调该方法来显示位置。在自定义ViewGroup中会用到，他调用的是子View的layout函数。onLayout一般是循环取出子View，然后经过计算得出各个子View位置的坐标值，然后用chid.layout(l,t,r,b)函数设置子View位置。</li>
-<li>onTouchEvent():监听到触摸事件回调，也是实现交互非常重要的回调方法</li>
-<li>onDraw():回调该方法对我们的控件进行绘制</li>
-</ul>
-<p>注： onFinishInflite()或onAttachToWindow(): 可以得到子View对象</p>
-<h4 id="二-3种自定义View"><a href="#二-3种自定义View" class="headerlink" title="二. 3种自定义View"></a>二. 3种自定义View</h4><ul>
-<li><p><strong>扩展式：</strong></p>
-<p>扩展式自定义View继承自Android原生特定的View如：TextView，ImageView等等。我们通过重写onDrow()等回调方法对其进行<strong>扩展</strong>！使其实现我们想要的<strong>功能或样式</strong>！</p>
-<p><strong>注：</strong>该方法实现的自定义View控件<strong>不</strong>需要自己支持wrap_content和padding。</p>
-</li>
-<li><p><strong>组合式：</strong></p>
-<p>组合式自定义View继承自ViewGrop的子View如：LinearLayout、RelativieLayout等。当某种效果看起来像几种<strong>View组合</strong>在一起的时候，都可以使用这种方式实现。</p>
-<p><strong>注：</strong>该方式实现自定义View<strong>不</strong>需要自己处理ViewGroup的测量和布局这两个过程。</p>
-</li>
-<li><p><strong>完全自定义：</strong><br>完全自定义View继承自View（android中所有控件的基类），通常实现一些不方便布局的组合方式来达到的，需要静态或动态地显示一些<strong>不规则</strong>的控件或图形！</p>
-<p><strong>注：**</strong>该方法实现的自定义View控件<strong>需要</strong>自己支持wrap_content和padding。**</p>
-</li>
-</ul>
-<h4 id="三-绘制流程-函数调用链"><a href="#三-绘制流程-函数调用链" class="headerlink" title="三. 绘制流程-函数调用链"></a>三. 绘制流程-函数调用链</h4><p><img src="/2018/03/28/Custom-View-Components/cst_view_drawing_flowsheet.jpg" alt="绘制流程函数调用图"></p>
-<h4 id="三-View生命周期"><a href="#三-View生命周期" class="headerlink" title="三. View生命周期"></a>三. View生命周期</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 可见性改变 or Activity.onCreate()</span><br><span class="line">op0=&gt;operation: 实例化View-调用View构造方法</span><br><span class="line">op1=&gt;operation: View.onFinishInflate()</span><br><span class="line">op2=&gt;operation: View.onAttachedToWindow()</span><br><span class="line">op3=&gt;operation: View.onMeasure()</span><br><span class="line">op4=&gt;operation: View.onSizeChanged()</span><br><span class="line">op5=&gt;operation: onLayout()</span><br><span class="line">op6=&gt;operation: onDraw()</span><br><span class="line">cond=&gt;condition: Activity.onDestroy()</span><br><span class="line">op=&gt;operation: View.onDetachedFromWindow()</span><br><span class="line">sub1=&gt;subroutine: 子流程1</span><br><span class="line">e=&gt;end: 结束框</span><br><span class="line">st-&gt;op0-&gt;op1-&gt;op2-&gt;op3-&gt;op4-&gt;op5-&gt;op6-&gt;cond</span><br><span class="line">cond(yes)-&gt;op-&gt;e</span><br><span class="line">cond(no)-&gt;e</span><br></pre></td></tr></table></figure>
-<h2 id="四-自定义步骤"><a href="#四-自定义步骤" class="headerlink" title="四. 自定义步骤"></a>四. 自定义步骤</h2><ol>
-<li>自定义View的属性</li>
-<li>在构造方法中获取自定义属性</li>
-<li>重写onMesure(可根据情况省略这一步)</li>
-<li>重写onDraw</li>
-</ol>
-<p>注：</p>
-<ul>
-<li>对于具有滑动效果的自定义View，还要做相关的滑动处理</li>
-<li>如果遇到滑动冲突还需要解决相应的滑动冲突</li>
-</ul>
-<p>第3步：(通常可以不重写该方法)</p>
-<ul>
-<li>不重写：View这个类交给系统默认的处理</li>
-<li>重写：如果View类的默认处理不满足我们的要求，我们就重写onMeasure函数</li>
-</ul>
-<p><code>wrap_content</code>或者是<code>match_parent</code>设置并没有指定真正的大小，可是我们绘制到屏幕上的View必须是要有具体的宽高，假如我们需要自顶一个正方形View这个时候必须对</p>
-<p>protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){ … }</p>
-<p>进行重写。</p>
-<p>1和2就省略了，从第三步开始。</p>
-<h4 id="五-视需要重写onMeasure（设计宽高和测量模式）"><a href="#五-视需要重写onMeasure（设计宽高和测量模式）" class="headerlink" title="五. 视需要重写onMeasure（设计宽高和测量模式）"></a>五. 视需要重写onMeasure（设计宽高和测量模式）</h4><p>widthMeasureSpec, heightMeasureSpec都是int型，一个int有4字节存储空间。</p>
-<p>所以，对这4字节即32bit划分可以表示多个信息：最高位2bit用于区分测量模式(2的2次方=4，完全可以涵盖<code>UNSPECIFIED</code>，<code>EXACTLY</code>，<code>AT_MOST</code>这3种测量模式)，后面30bit存放宽或高的大小信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">int widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br></pre></td></tr></table></figure>
-<p>注：其实以上两个方法内部就进行bit位隔开取的计算了(移位<code>&lt;&lt;</code>和且<code>&amp;</code>操作)</p>
-<p>分析：此时获取的宽高的大小并不是最终绘制出来的大小，其大小来自父亲view的参考值。</p>
-<table>
-<thead>
-<tr>
-<th>测量模式</th>
-<th>表示意思</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UNSPECIFIED</td>
-<td>父容器没有对当前View有任何限制，当前View可以任意取尺寸</td>
-</tr>
-<tr>
-<td>EXACTLY</td>
-<td>当前的尺寸就是当前View应该取的尺寸（固定值和 match_parent）</td>
-</tr>
-<tr>
-<td>AT_MOST</td>
-<td>当前尺寸是当前View能取的最大尺寸（ wrap_content）</td>
-</tr>
-</tbody>
-</table>
-<p><strong>对wrap_content的支持</strong></p>
-<p>在onMeasure()方法中实现对wrap_content的支持</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> widthSpecSize= MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> heightSpectMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">    <span class="keyword">int</span> heightSpecSize=MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line">    <span class="comment">//这里就是对wrap_content的支持</span></span><br><span class="line">    <span class="keyword">if</span>(widthSpecMode==MeasureSpec.AT_MOST&amp;&amp;heightSpectMode==MeasureSpec.AT_MOST)&#123;</span><br><span class="line">        <span class="comment">//这里设定的根据你自己自定义View的情况而定</span></span><br><span class="line">        setMeasuredDimension(<span class="number">200</span>,<span class="number">200</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(widthSpecMode==MeasureSpec.AT_MOST)&#123;</span><br><span class="line">        setMeasuredDimension(<span class="number">200</span>,heightSpecSize);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (heightSpectMode==MeasureSpec.AT_MOST)&#123;</span><br><span class="line">        setMeasuredDimension(widthSpecSize,<span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注： 不要调用super.onMeasure( widthMeasureSpec, heightMeasureSpec);</p>
-<p><strong>对padding的支持</strong></p>
-<p>在onDraw()方法中实现对padding的支持，其实就是在绘制控件时考虑到padding就好了。如果不自己实现那么你对该自定义View设置padding将是无效的！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDraw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onDraw(canvas);</span><br><span class="line">    <span class="comment">//这里是对画一个圆形的View的padding支持</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> paddingLeft = getPaddingLeft();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> paddingRight = getPaddingRight();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> paddingTop = getPaddingTop();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> paddingBottom=getPaddingBottom();</span><br><span class="line">    <span class="keyword">int</span> width = getWidth()-paddingLeft-paddingRight;</span><br><span class="line">    <span class="keyword">int</span> height = getHeight()-paddingBottom-paddingTop;</span><br><span class="line">    <span class="keyword">int</span> radius = Math.min(width,height)/<span class="number">2</span>;</span><br><span class="line">    canvas.drawCircle(paddingLeft+width/<span class="number">2</span>,paddingTop+height/<span class="number">2</span>,radius,mPaint_while);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="六-重写onDraw（实现效果）"><a href="#六-重写onDraw（实现效果）" class="headerlink" title="六. 重写onDraw（实现效果）"></a>六. 重写onDraw（实现效果）</h4><p>Canvas对象：画板</p>
-<p>Canvas常用操作速查表：</p>
-<table>
-<thead>
-<tr>
-<th>操作分类</th>
-<th>相关API</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>绘制颜色</td>
-<td>drawColor, drawRGB, drawARGB</td>
-<td>使用单一颜色填充整个画布</td>
-</tr>
-<tr>
-<td>绘制基本形状</td>
-<td>drawPoint, drawPoints, drawLine, drawLines, drawRect, drawRoundRect, drawOval, drawCircle, drawArc</td>
-<td>依次为 点、线、矩形、圆角矩形、椭圆、圆、圆弧</td>
-</tr>
-<tr>
-<td>绘制图片</td>
-<td>drawBitmap, drawPicture</td>
-<td>绘制位图和图片)</td>
-</tr>
-<tr>
-<td>绘制文本</td>
-<td>drawText, drawPosText, drawTextOnPath</td>
-<td>依次为 绘制文字、绘制文字时指定每个文字位置、根据路径绘制文字</td>
-</tr>
-<tr>
-<td>绘制路径</td>
-<td>drawPath</td>
-<td>绘制路径，绘制贝塞尔曲线时也需要用到该函数</td>
-</tr>
-<tr>
-<td>顶点操作</td>
-<td>drawVertices, drawBitmapMesh</td>
-<td>通过对顶点操作可以使图像形变，drawVertices直接对画布作用、 drawBitmapMesh只对绘制的Bitmap作用</td>
-</tr>
-<tr>
-<td>画布剪裁</td>
-<td>clipPath, clipRect</td>
-<td>设置画布的显示区域</td>
-</tr>
-<tr>
-<td>画布快照</td>
-<td>save, restore, saveLayerXxx, restoreToCount, getSaveCount</td>
-<td>依次为 保存当前状态、 回滚到上一次保存的状态、 保存图层状态、 会滚到指定状态、 获取保存次数</td>
-</tr>
-<tr>
-<td>画布变换</td>
-<td>translate, scale, rotate, skew</td>
-<td>依次为 位移、缩放、 旋转、错切</td>
-</tr>
-<tr>
-<td>Matrix(矩阵)</td>
-<td>getMatrix, setMatrix, concat</td>
-<td>实际画布的位移，缩放等操作的都是图像矩阵Matrix，只不过Matrix比较难以理解和使用，故封装了一些常用的方法。</td>
-</tr>
-<tr>
-<td>基础方法</td>
-<td>getDensity, getWidth, getHeight，getDrawFilter，isHardwareAccelerated(API 11)，getMaximumBitmapWidth，getMaximumBitmapHeight，getDensity，quickReject，isOpaque，setBitmap，setDrawFilter</td>
-<td>其他函数</td>
-</tr>
-</tbody>
-</table>
-<p>Path常用操作速查表：</p>
-<table>
-<thead>
-<tr>
-<th>作用</th>
-<th>相关API</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>移动起点</td>
-<td>moveTo</td>
-<td>移动下一次操作的起点位置</td>
-</tr>
-<tr>
-<td>设置终点</td>
-<td>setLastPoint</td>
-<td>重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同</td>
-</tr>
-<tr>
-<td>连接直线</td>
-<td>lineTo</td>
-<td>添加上一个点到当前点之间的直线到Path</td>
-</tr>
-<tr>
-<td>闭合路径</td>
-<td>close</td>
-<td>连接第一个点连接到最后一个点，形成一个闭合区域</td>
-</tr>
-<tr>
-<td>添加内容</td>
-<td>addRect, addRoundRect, addOval, addCircle, addPath, addArc, arcTo</td>
-<td>添加(矩形， 圆角矩形， 椭圆， 圆， 路径， 圆弧) 到当前Path (注意addArc和arcTo的区别)</td>
-</tr>
-<tr>
-<td>是否为空</td>
-<td>isEmpty</td>
-<td>判断Path是否为空</td>
-</tr>
-<tr>
-<td>是否为矩形</td>
-<td>isRect</td>
-<td>判断path是否是一个矩形</td>
-</tr>
-<tr>
-<td>替换路径</td>
-<td>set</td>
-<td>用新的路径替换到当前路径所有内容</td>
-</tr>
-<tr>
-<td>偏移路径</td>
-<td>offset</td>
-<td>对当前路径之前的操作进行偏移(不会影响之后的操作)</td>
-</tr>
-<tr>
-<td>贝塞尔曲线</td>
-<td>quadTo, cubicTo</td>
-<td>分别为二次和三次贝塞尔曲线的方法</td>
-</tr>
-<tr>
-<td>rXxx方法</td>
-<td>rMoveTo, rLineTo, rQuadTo, rCubicTo</td>
-<td><strong>不带r的方法是基于原点的坐标系(偏移量)， rXxx方法是基于当前点坐标系(偏移量)</strong></td>
-</tr>
-<tr>
-<td>填充模式</td>
-<td>setFillType, getFillType, isInverseFillType, toggleInverseFillType</td>
-<td>设置,获取,判断和切换填充模式</td>
-</tr>
-<tr>
-<td>提示方法</td>
-<td>incReserve</td>
-<td>提示Path还有多少个点等待加入<strong>(这个方法貌似会让Path优化存储结构)</strong></td>
-</tr>
-<tr>
-<td>布尔操作(API19)</td>
-<td>op</td>
-<td>对两个Path进行布尔运算(即取交集、并集等操作)</td>
-</tr>
-<tr>
-<td>计算边界</td>
-<td>computeBounds</td>
-<td>计算Path的边界</td>
-</tr>
-<tr>
-<td>重置路径</td>
-<td>reset, rewind</td>
-<td>清除Path中的内容 <strong>reset不保留内部数据结构，但会保留FillType.</strong> <strong>rewind会保留内部的数据结构，但不保留FillType</strong></td>
-</tr>
-<tr>
-<td>矩阵操作</td>
-<td>transform</td>
-<td>矩阵变换</td>
-</tr>
-</tbody>
-</table>
-<p>Matrix常用操作速查表：</p>
-<table>
-<thead>
-<tr>
-<th>方法类别</th>
-<th>相关API</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>基本方法</td>
-<td>equals hashCode toString toShortString</td>
-<td>比较、 获取哈希值、 转换为字符串</td>
-</tr>
-<tr>
-<td>数值操作</td>
-<td>set reset setValues getValues</td>
-<td>设置、 重置、 设置数值、 获取数值</td>
-</tr>
-<tr>
-<td>数值计算</td>
-<td>mapPoints mapRadius mapRect mapVectors</td>
-<td>计算变换后的数值</td>
-</tr>
-<tr>
-<td>设置(set)</td>
-<td>setConcat setRotate setScale setSkew setTranslate</td>
-<td>设置变换</td>
-</tr>
-<tr>
-<td>前乘(pre)</td>
-<td>preConcat preRotate preScale preSkew preTranslate</td>
-<td>前乘变换</td>
-</tr>
-<tr>
-<td>后乘(post)</td>
-<td>postConcat postRotate postScale postSkew postTranslate</td>
-<td>后乘变换</td>
-</tr>
-<tr>
-<td>特殊方法</td>
-<td>setPolyToPoly setRectToRect rectStaysRect setSinCos</td>
-<td>一些特殊操作</td>
-</tr>
-<tr>
-<td>矩阵相关</td>
-<td>invert isAffine(API21) isIdentity</td>
-<td>求逆矩阵、 是否为仿射矩阵、 是否为单位矩阵 …</td>
-</tr>
-</tbody>
-</table>
-<p>贝塞尔曲线常用操作速查表：</p>
-<table>
-<thead>
-<tr>
-<th>贝塞尔曲线</th>
-<th>对应的方法</th>
-<th>演示动画</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>一阶曲线(线性曲线)</td>
-<td>lineTo</td>
-<td><a href="https://user-gold-cdn.xitu.io/2017/8/23/05750d8554a308b440e7ebbfea88c525?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" target="_blank" rel="noopener"><img src="https://user-gold-cdn.xitu.io/2017/8/23/05750d8554a308b440e7ebbfea88c525?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></a></td>
-</tr>
-<tr>
-<td>二阶曲线</td>
-<td>quadTo</td>
-<td><a href="https://user-gold-cdn.xitu.io/2017/8/23/2a39d3cb8a36dbe8ddb3d068adffc00b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" target="_blank" rel="noopener"><img src="https://user-gold-cdn.xitu.io/2017/8/23/2a39d3cb8a36dbe8ddb3d068adffc00b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></a></td>
-</tr>
-<tr>
-<td>三阶曲线</td>
-<td>cubicTo</td>
-<td><a href="https://user-gold-cdn.xitu.io/2017/8/23/bd9b5ba0ef55d80f6ed3cc395ca95112?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" target="_blank" rel="noopener"><img src="https://user-gold-cdn.xitu.io/2017/8/23/bd9b5ba0ef55d80f6ed3cc395ca95112?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></a></td>
-</tr>
-<tr>
-<td>四阶曲线</td>
-<td>无</td>
-<td><a href="https://user-gold-cdn.xitu.io/2017/8/23/bddf32dad9399c44dd232328ce56a2a8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" target="_blank" rel="noopener"><img src="https://user-gold-cdn.xitu.io/2017/8/23/bddf32dad9399c44dd232328ce56a2a8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></a></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p>自定义View的延伸：<strong>自定义ViewGroup</strong></p>
-<p>设计思路:</p>
-<blockquote>
-<p>1.首先，我们得知道各个子View的大小吧，只有先知道子View的大小，我们才知道当前的ViewGroup该设置为多大去容纳它们。</p>
-<p>2.根据子View的大小，以及我们的ViewGroup要实现的功能，决定出ViewGroup的大小</p>
-<p>3.ViewGroup和子View的大小算出来了之后，接下来就是去摆放了吧，具体怎么去摆放呢？这得根据你定制的需求去摆放了，比如，你想让子View按照垂直顺序一个挨着一个放，或者是按照先后顺序一个叠一个去放，这是你自己决定的。</p>
-<p>4.已经知道怎么去摆放还不行啊，决定了怎么摆放就是相当于把已有的空间”分割”成大大小小的空间，每个空间对应一个子View，我们接下来就是把子View对号入座了，把它们放进它们该放的地方去。</p>
-</blockquote>
-<p>步骤：(实现ViewGroup垂直摆放child view)</p>
-<ol>
-<li>重写onMeasure，实现测量子View大小以及设定ViewGroup的大小</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(<span class="keyword">int</span> widthMeasureSpec, <span class="keyword">int</span> heightMeasureSpec)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line">        <span class="comment">//将所有的子View进行测量，这会触发每个子View的onMeasure函数</span></span><br><span class="line">        <span class="comment">//注意要与measureChild区分，measureChild是对单个view进行测量</span></span><br><span class="line">        measureChildren(widthMeasureSpec, heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> widthMode = MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">        <span class="keyword">int</span> widthSize = MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line">        <span class="keyword">int</span> heightMode = MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">        <span class="keyword">int</span> heightSize = MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> childCount = getChildCount();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (childCount == <span class="number">0</span>) &#123;<span class="comment">//如果没有子View,当前ViewGroup没有存在的意义，不用占用空间</span></span><br><span class="line">            setMeasuredDimension(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//如果宽高都是包裹内容</span></span><br><span class="line">            <span class="keyword">if</span> (widthMode == MeasureSpec.AT_MOST &amp;&amp; heightMode == MeasureSpec.AT_MOST) &#123;</span><br><span class="line">                <span class="comment">//我们将高度设置为所有子View的高度相加，宽度设为子View中最大的宽度</span></span><br><span class="line">                <span class="keyword">int</span> height = getTotleHeight();</span><br><span class="line">                <span class="keyword">int</span> width = getMaxChildWidth();</span><br><span class="line">                setMeasuredDimension(width, height);</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (heightMode == MeasureSpec.AT_MOST) &#123;<span class="comment">//如果只有高度是包裹内容</span></span><br><span class="line">                <span class="comment">//宽度设置为ViewGroup自己的测量宽度，高度设置为所有子View的高度总和</span></span><br><span class="line">                setMeasuredDimension(widthSize, getTotleHeight());</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (widthMode == MeasureSpec.AT_MOST) &#123;<span class="comment">//如果只有宽度是包裹内容</span></span><br><span class="line">                <span class="comment">//宽度设置为子View中宽度最大的值，高度设置为ViewGroup自己的测量值</span></span><br><span class="line">                setMeasuredDimension(getMaxChildWidth(), heightSize);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/***</span></span><br><span class="line"><span class="comment">     * 获取子View中宽度最大的值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getMaxChildWidth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> childCount = getChildCount();</span><br><span class="line">        <span class="keyword">int</span> maxWidth = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++) &#123;</span><br><span class="line">            View childView = getChildAt(i);</span><br><span class="line">            <span class="keyword">if</span> (childView.getMeasuredWidth() &gt; maxWidth)</span><br><span class="line">                maxWidth = childView.getMeasuredWidth();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> maxWidth;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/***</span></span><br><span class="line"><span class="comment">     * 将所有子View的高度相加</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getTotleHeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> childCount = getChildCount();</span><br><span class="line">        <span class="keyword">int</span> height = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++) &#123;</span><br><span class="line">            View childView = getChildAt(i);</span><br><span class="line">            height += childView.getMeasuredHeight();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> height;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>摆放child View</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = getChildCount();</span><br><span class="line">        <span class="comment">//记录当前的高度位置</span></span><br><span class="line">        <span class="keyword">int</span> curHeight = t;</span><br><span class="line">        <span class="comment">//将子View逐个摆放</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            View child = getChildAt(i);</span><br><span class="line">            <span class="keyword">int</span> height = child.getMeasuredHeight();</span><br><span class="line">            <span class="keyword">int</span> width = child.getMeasuredWidth();</span><br><span class="line">            <span class="comment">//摆放子View，参数分别是子View矩形区域的左、上、右、下边</span></span><br><span class="line">            child.layout(l, curHeight, l + width, curHeight + height);</span><br><span class="line">            curHeight += height;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>参看文章：</p>
-<p><a href="https://developer.android.com/guide/topics/ui/custom-components" target="_blank" rel="noopener">Developers</a></p>
-<p><a href="https://www.jianshu.com/p/c84693096e41" target="_blank" rel="noopener">自定义View，有这一篇就够了</a></p>
-<p><a href="https://juejin.im/post/599d2b2e518825242238d4f6" target="_blank" rel="noopener">自定义view总结</a></p>
-<p><a href="https://www.jianshu.com/p/bcae9ec222e6" target="_blank" rel="noopener">自定义View之总结</a></p>
-<p><a href="https://blog.csdn.net/cjm2484836553/article/details/71024436" target="_blank" rel="noopener">自定义View（三）—自定义View整个流程的梳理与总结 - 李诗雨</a></p>
-<p>引申：</p>
-<p><a href="http://blog.csdn.net/lmj623565791/article/details/24300125" target="_blank" rel="noopener">Android 自定义View (二) 进阶 - Hongyang)</a></p>
-<p><a href="https://medium.com/@romandanylyk96/android-draw-a-custom-view-ef79fe2ff54b" target="_blank" rel="noopener">Android: draw a custom view - Roman Danylyk (Medium)</a></p>
-<p><a href="http://hencoder.com/ui-1-1/" target="_blank" rel="noopener">HenCoder Android 开发进阶: 自定义 View 1-1 绘制基础</a></p>
-<p><a href="https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Advance/%5B01%5DCustomViewProcess.md" target="_blank" rel="noopener">自定义View分类与流程</a></p>
-<p><a href="http://www.gcssloop.com/#blog" target="_blank" rel="noopener">GcsSloop</a></p>
-<p><a href="https://www.jianshu.com/p/08be3c08c576" target="_blank" rel="noopener">深度解析View构造函数中的参数defStyleAttr</a></p>
-<p><a href="https://blog.csdn.net/lue2009/article/details/45692009" target="_blank" rel="noopener">View的生命周期方法和Activity生命周期方法关系</a></p>
+          Design Pattern的出现意义概念就不说了之前文章就有. 它的意义或者说作用是:
+将代码设计得更好, 比如要可以重复使用、容易看懂、代码要可靠正确等, 达到这些要求便能真正实现工程化. 总的来说就是你要有做一名代码艺术大师的理想, 才能成为一合格的工程师.
+言而总之: 设计模式即为艺术, 让
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/18/Observer-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://paliysha.site/2018/03/14/Six-Object-oriented-design-principle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/14/Six-Object-oriented-design-principle/" itemprop="url">Six Object-Oriented Design Principles</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T20:30:29+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/14/Six-Object-oriented-design-principle/" class="leancloud_visitors" data-flag-title="Six Object-Oriented Design Principles">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一. OOP六大设计原则
+单一职责原则Principle SRP:  一个类仅有一个变化因素, 否则就应将其拆分
+
+开闭原则Principle OCP: (实现类)修改要封闭, 扩展是开放的(新建实现类)
+
+里氏替换原则Principle LSP: 使用基类的地方要能使用子类, 反之不行(Java的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/14/Six-Object-oriented-design-principle/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://paliysha.site/2018/01/21/Translation-A-Small-Leak-Will-Sink-a-Great-Ship/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/21/Translation-A-Small-Leak-Will-Sink-a-Great-Ship/" itemprop="url">(Translation) A Small Leak Will Sink a Great Ship</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T21:27:02+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/21/Translation-A-Small-Leak-Will-Sink-a-Great-Ship/" class="leancloud_visitors" data-flag-title="(Translation) A Small Leak Will Sink a Great Ship">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          小泄露大翻船
+Android Lollipop之前版本, 弹出dialog可能导致Android应用内存泄露
+由 Pierre-Yves Ricau 原创
+这篇文章开始于在我构建LeakCanary作为内部邮件专题时. 我发现了一个奇怪的内存泄露, 然后开始深入挖掘找出发生了什么事情。
+艺术大师
+我
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/21/Translation-A-Small-Leak-Will-Sink-a-Great-Ship/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://paliysha.site/2018/01/21/a-small-leak/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/21/a-small-leak/" itemprop="url">A small leak will sink a great ship</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T21:27:02+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/21/a-small-leak/" class="leancloud_visitors" data-flag-title="A small leak will sink a great ship">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          小泄露大翻船
+Android Lollipop之前版本, 弹出dialog可能导致Android应用内存泄露
+由 Pierre-Yves Ricau 原创
+这篇文章开始于在我构建LeakCanary作为内部邮件专题时. 我发现了一个奇怪的内存泄露, 然后开始深入挖掘找出发生了什么事情。
+艺术家
+我得
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/21/a-small-leak/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://paliysha.site/2018/01/16/Translation-Fragment-Transactions-Activity-State-Loss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/16/Translation-Fragment-Transactions-Activity-State-Loss/" itemprop="url">(Translation) Fragment Transactions & Activity State Loss</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-16T20:58:00+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/16/Translation-Fragment-Transactions-Activity-State-Loss/" class="leancloud_visitors" data-flag-title="(Translation) Fragment Transactions & Activity State Loss">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          以下堆栈追踪和异常信息自从Honeycomb’s初期版本以来就困扰着StackOverflow:
+12345java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState    at and
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/16/Translation-Fragment-Transactions-Activity-State-Loss/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://paliysha.site/2018/01/16/stateless/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Paliy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sand with the Wind">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/16/stateless/" itemprop="url">Fragment Transactions & Activity State Loss(译文)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-16T20:58:00+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/16/stateless/" class="leancloud_visitors" data-flag-title="Fragment Transactions & Activity State Loss(译文)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          以下堆栈追踪和异常信息自从Honeycomb’s初期版本以来就困扰着StackOverflow:
+12345java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState    at and
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/16/stateless/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -718,7 +1110,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -754,7 +1146,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Paliy</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">once sunny ten times freezing</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -764,7 +1156,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -776,18 +1168,39 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">11</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
           </nav>
 
           
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
 
           <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/sieml" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:sielee@163.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
             
           </div>
 
@@ -816,7 +1229,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -834,7 +1247,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
 
 
 
@@ -920,6 +1333,13 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
   
 
   
@@ -956,10 +1376,342 @@
 
 
 
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'MUQOlHqTaQD1Q0DVwhVz84Tu-gzGzoHsz',
+        app_key: 'iNnANEEaVrhqyUDP7BvoDyy6',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!'
+    });
+  </script>
+
 
 
   
 
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
@@ -967,6 +1719,128 @@
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("MUQOlHqTaQD1Q0DVwhVz84Tu-gzGzoHsz", "iNnANEEaVrhqyUDP7BvoDyy6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 

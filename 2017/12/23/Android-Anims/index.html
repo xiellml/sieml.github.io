@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next gemini use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Sand with the Wind" type="application/atom+xml" />
+
 
 
 
@@ -83,11 +85,11 @@
 <meta name="keywords" content="animation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Animation">
-<meta property="og:url" content="http://yoursite.com/2017/12/23/Android-Anims/index.html">
+<meta property="og:url" content="http://paliysha.site/2017/12/23/Android-Anims/index.html">
 <meta property="og:site_name" content="Sand with the Wind">
 <meta property="og:description" content="Android动画共有3大类 逐帧动画, 简称”帧动画”, 英文名: Frame Animation or Drawable Animation 补间动画, 又称”视图动画”, 英文名: Tween Animation or View Animation 属性动画, 英文名: Property Animation  区别 API 3.0之后才新加入了Property动画作为补充凡是前两种动画可以实">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-23T04:38:13.000Z">
+<meta property="og:updated_time" content="2018-05-28T03:46:26.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Animation">
 <meta name="twitter:description" content="Android动画共有3大类 逐帧动画, 简称”帧动画”, 英文名: Frame Animation or Drawable Animation 补间动画, 又称”视图动画”, 英文名: Tween Animation or View Animation 属性动画, 英文名: Property Animation  区别 API 3.0之后才新加入了Property动画作为补充凡是前两种动画可以实">
@@ -98,7 +100,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.3',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -120,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/23/Android-Anims/"/>
+  <link rel="canonical" href="http://paliysha.site/2017/12/23/Android-Anims/"/>
 
 
 
@@ -161,7 +163,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
       
   </div>
 
@@ -191,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -202,9 +214,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -233,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/23/Android-Anims/">
+    <link itemprop="mainEntityOfPage" href="http://paliysha.site/2017/12/23/Android-Anims/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Paliy">
@@ -280,6 +326,17 @@
 
           
           
+             <span id="/2017/12/23/Android-Anims/" class="leancloud_visitors" data-flag-title="Android Animation">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -313,6 +370,11 @@
 <li><strong>补间动画最常见</strong>  补间补间, 就是把起止帧之间的帧画出来, 改变View的透明度, 位置, 大小, 角度.  它结束后看到的位置不是真实坐标的改变, 只是绘制位置的改变.</li>
 <li><strong>属性动画最强大</strong>  会改变View的真实属性(坐标), 父类为系统抽象类Animator(有500多行)基本不直接使用, 最常用的是子类ValueAnimator和ObjectAnimator.</li>
 </ol>
+<p>区别：</p>
+<p>（1）属性动画比视图动画更强大，不但可以实现缩放、平移等操作，还可以自己定义动画效果，监听动画的过程，在动画过程中或完成后做响应的动作。</p>
+<p>（2）属性动画不但可以作用于View，还能作用于Object。</p>
+<p>（3）属性动画利用属性的改变实现动画，而视图动画仅仅改变了view的大小位置，但view真正的属性没有改变。</p>
+<p>注：关于真实属性，比如视图动画作用平移之后点击它会无效，因为它的坐标并未真正改变需要点击到原来位置才能生效，而这个问题对于属性动画是不存在的。</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="1-逐帧动画"><a href="#1-逐帧动画" class="headerlink" title="1. 逐帧动画"></a>1. 逐帧动画</h3><h4 id="特点"><a href="#特点" class="headerlink" title="特点:"></a>特点:</h4><p><em>细腻灵活</em>      <em>资源制作量大</em>      <em>图片文件多</em></p>
 <h4 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤:"></a>使用步骤:</h4><ol>
 <li>添加帧: XML定义资源文件, 或者Java代码创建 </li>
@@ -352,7 +414,11 @@
 <li>设置动画到View</li>
 </ol>
 <h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码:"></a>代码:</h4><ol>
-<li>只有代码方式: </li>
+<li>XML方式:</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:ordering</span>=<span class="string">"together"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">objectAnimator</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:valueType</span>=<span class="string">"floatType"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:propertyName</span>=<span class="string">"scaleX"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:valueFrom</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:valueTo</span>=<span class="string">"2"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">objectAnimator</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:propertyName</span>=<span class="string">"translationX"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:valueType</span>=<span class="string">"floatType"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:valueFrom</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:valueTo</span>=<span class="string">"200"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"></span><br><span class="line">Animator animator= AnimatorInflater.loadAnimator(this,R.animator.animator);</span><br><span class="line">animator.setTarget(imageView);</span><br><span class="line">animator.start();</span><br></pre></td></tr></table></figure>
+<ol>
+<li>代码方式: </li>
 </ol>
 <p>支持rotation, alpha, translationX, translationY, scaleX, scaleY, 以及使用AnimatorSet组合前者多种基础动画方式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ObjectAnimator animator = ObjectAnimator.ofFloat(imageView, <span class="string">"translationX"</span>, <span class="number">0f</span>, -<span class="number">300f</span>, <span class="number">0f</span>);</span><br><span class="line">animator.setDuration(<span class="number">2000</span>);</span><br><span class="line">animator.start();</span><br></pre></td></tr></table></figure></p>
 <p>AnimationSet提供了一个把多个动画组合成一个组合的机制，并可设置组中动画的时序关系，如同时播放，顺序播放等。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AnimatorSet bouncer = <span class="keyword">new</span> AnimatorSet(); </span><br><span class="line">bouncer.play(anim1).before(anim2); </span><br><span class="line">bouncer.play(anim2).with(anim3); </span><br><span class="line">bouncer.play(anim2).with(anim4) </span><br><span class="line">bouncer.play(anim5).after(amin2); </span><br><span class="line">animatorSet.start();</span><br></pre></td></tr></table></figure></p>
@@ -422,6 +488,30 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Buy me a coffee</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://raw.githubusercontent.com/sieml/sieml.github.io/source/webwxgetmsgimg.png" alt="Paliy WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -448,8 +538,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/16/Translation-Fragment-Transactions-Activity-State-Loss/" rel="prev" title="(Translation) Fragment Transactions & Activity State Loss">
-                (Translation) Fragment Transactions & Activity State Loss <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/16/stateless/" rel="prev" title="Fragment Transactions & Activity State Loss(译文)">
+                Fragment Transactions & Activity State Loss(译文) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -478,6 +568,10 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
   
 
 
@@ -515,7 +609,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Paliy</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">once sunny ten times freezing</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -525,7 +619,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -537,18 +631,39 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">11</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
           </nav>
 
           
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
 
           <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/sieml" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:sielee@163.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
             
           </div>
 
@@ -593,7 +708,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -611,7 +726,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
 
 
 
@@ -697,6 +812,13 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
@@ -737,10 +859,342 @@
 
 
 
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'MUQOlHqTaQD1Q0DVwhVz84Tu-gzGzoHsz',
+        app_key: 'iNnANEEaVrhqyUDP7BvoDyy6',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!'
+    });
+  </script>
+
 
 
   
 
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
@@ -748,6 +1202,128 @@
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("MUQOlHqTaQD1Q0DVwhVz84Tu-gzGzoHsz", "iNnANEEaVrhqyUDP7BvoDyy6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 
