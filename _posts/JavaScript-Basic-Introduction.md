@@ -1,5 +1,5 @@
 ---
-title: JavaScript Basic Introduction
+title: (Repost) JavaScript Basic Introduction
 date: 2018-03-29 14:56:30
 tags: script
 ---

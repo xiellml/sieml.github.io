@@ -8,6 +8,12 @@ tags: views
 
 那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。
 
+
+
+我们从View 这个类本身入手：
+
+
+
 #### 一. View的构造函数和常见函数
 
 Constructor to use when creating a view from code.
@@ -72,7 +78,7 @@ View(x,x,x,x){
 - **完全自定义：**
   完全自定义View继承自View（android中所有控件的基类），通常实现一些不方便布局的组合方式来达到的，需要静态或动态地显示一些**不规则**的控件或图形！
 
-  **注：\****该方法实现的自定义View控件**需要**自己支持wrap_content和padding。**
+  **注：** <u>该方法实现的自定义View控件**需要**自己支持wrap_content和padding。</u>
 
 #### 三. 绘制流程-函数调用链
 
@@ -114,7 +120,7 @@ cond(no)->e
 - 不重写：View这个类交给系统默认的处理
 - 重写：如果View类的默认处理不满足我们的要求，我们就重写onMeasure函数
 
-`wrap_content`或者是`match_parent`设置并没有指定真正的大小，可是我们绘制到屏幕上的View必须是要有具体的宽高，假如我们需要自顶一个正方形View这个时候必须对
+`wrap_content`或者是`match_parent`设置并没有指定真正的大小，可是我们绘制到屏幕上的View必须是要有具体的宽高，假如我们需要自定义一个正方形View这个时候必须对
 
 protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){ … }
 
@@ -361,25 +367,25 @@ Matrix常用操作速查表：
 
 [Developers](https://developer.android.com/guide/topics/ui/custom-components)
 
-[自定义View，有这一篇就够了](https://www.jianshu.com/p/c84693096e41)
-
 [自定义view总结](https://juejin.im/post/599d2b2e518825242238d4f6)
 
 [自定义View之总结](https://www.jianshu.com/p/bcae9ec222e6)
 
+[自定义View，有这一篇就够了](https://www.jianshu.com/p/c84693096e41)
+
 [自定义View（三）—自定义View整个流程的梳理与总结 - 李诗雨](https://blog.csdn.net/cjm2484836553/article/details/71024436)
 
 引申：
+
+[GcsSloop](http://www.gcssloop.com/#blog)
+
+[自定义View分类与流程](https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Advance/%5B01%5DCustomViewProcess.md)
 
 [Android 自定义View (二) 进阶 - Hongyang)](http://blog.csdn.net/lmj623565791/article/details/24300125)
 
 [Android: draw a custom view - Roman Danylyk (Medium)](https://medium.com/@romandanylyk96/android-draw-a-custom-view-ef79fe2ff54b)
 
 [HenCoder Android 开发进阶: 自定义 View 1-1 绘制基础](http://hencoder.com/ui-1-1/)
-
-[自定义View分类与流程](https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Advance/%5B01%5DCustomViewProcess.md)
-
-[GcsSloop](http://www.gcssloop.com/#blog)
 
 [深度解析View构造函数中的参数defStyleAttr](https://www.jianshu.com/p/08be3c08c576)
 

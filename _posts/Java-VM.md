@@ -1,5 +1,5 @@
 ---
-title: Java VM
+title: (Repost) Java VM
 date: 2018-03-27 11:55:44
 tags: jvm
 ---

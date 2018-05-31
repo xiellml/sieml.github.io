@@ -1,5 +1,5 @@
 ---
-title: "Observer-Pattern"
+title: Observer Pattern
 date: 2018-03-18 13:06:32
 tags: Java Code Design
 ---
