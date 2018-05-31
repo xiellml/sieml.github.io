@@ -81,23 +81,23 @@
 
 
 
-<meta name="description" content="自定义View为什么这么难？他到底难在哪里，尤其是设计到动效和事件交互的时候。 那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。 一. View的构造函数和常见函数Constructor to use when creating a view from code.  View(Context context)  Constructor that is called when inf">
+<meta name="description" content="自定义View为什么这么难？他到底难在哪里，尤其是设计到动效和事件交互的时候。 那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。 我们从View 这个类本身入手： 一. View的构造函数和常见函数Constructor to use when creating a view from code.  View(Context context)  Constructor that i">
 <meta name="keywords" content="views">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Custom View Components">
 <meta property="og:url" content="http://paliysha.site/2018/03/28/Custom-View-Components/index.html">
 <meta property="og:site_name" content="Sand with the Wind">
-<meta property="og:description" content="自定义View为什么这么难？他到底难在哪里，尤其是设计到动效和事件交互的时候。 那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。 一. View的构造函数和常见函数Constructor to use when creating a view from code.  View(Context context)  Constructor that is called when inf">
+<meta property="og:description" content="自定义View为什么这么难？他到底难在哪里，尤其是设计到动效和事件交互的时候。 那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。 我们从View 这个类本身入手： 一. View的构造函数和常见函数Constructor to use when creating a view from code.  View(Context context)  Constructor that i">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://paliysha.site/2018/03/28/Custom-View-Components/cst_view_drawing_flowsheet.jpg">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/23/05750d8554a308b440e7ebbfea88c525?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/23/2a39d3cb8a36dbe8ddb3d068adffc00b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/23/bd9b5ba0ef55d80f6ed3cc395ca95112?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/23/bddf32dad9399c44dd232328ce56a2a8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2018-05-25T03:54:29.009Z">
+<meta property="og:updated_time" content="2018-05-31T02:27:28.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Custom View Components">
-<meta name="twitter:description" content="自定义View为什么这么难？他到底难在哪里，尤其是设计到动效和事件交互的时候。 那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。 一. View的构造函数和常见函数Constructor to use when creating a view from code.  View(Context context)  Constructor that is called when inf">
+<meta name="twitter:description" content="自定义View为什么这么难？他到底难在哪里，尤其是设计到动效和事件交互的时候。 那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。 我们从View 这个类本身入手： 一. View的构造函数和常见函数Constructor to use when creating a view from code.  View(Context context)  Constructor that i">
 <meta name="twitter:image" content="http://paliysha.site/2018/03/28/Custom-View-Components/cst_view_drawing_flowsheet.jpg">
 
 
@@ -365,6 +365,7 @@
       
         <p>自定义View为什么这么难？他到底难在哪里，尤其是设计到动效和事件交互的时候。</p>
 <p>那么，我们需要不断实践练习和补充完整的知识才行！这一篇权当入门。</p>
+<p>我们从View 这个类本身入手：</p>
 <h4 id="一-View的构造函数和常见函数"><a href="#一-View的构造函数和常见函数" class="headerlink" title="一. View的构造函数和常见函数"></a>一. View的构造函数和常见函数</h4><p>Constructor to use when creating a view from code.</p>
 <ul>
 <li>View(Context context)</li>
@@ -402,7 +403,7 @@
 <p><strong>注：</strong>该方式实现自定义View<strong>不</strong>需要自己处理ViewGroup的测量和布局这两个过程。</p>
 </li>
 <li><p><strong>完全自定义：</strong><br>完全自定义View继承自View（android中所有控件的基类），通常实现一些不方便布局的组合方式来达到的，需要静态或动态地显示一些<strong>不规则</strong>的控件或图形！</p>
-<p><strong>注：**</strong>该方法实现的自定义View控件<strong>需要</strong>自己支持wrap_content和padding。**</p>
+<p><strong>注：</strong> <u>该方法实现的自定义View控件<strong>需要</strong>自己支持wrap_content和padding。</u></p>
 </li>
 </ul>
 <h4 id="三-绘制流程-函数调用链"><a href="#三-绘制流程-函数调用链" class="headerlink" title="三. 绘制流程-函数调用链"></a>三. 绘制流程-函数调用链</h4><p><img src="/2018/03/28/Custom-View-Components/cst_view_drawing_flowsheet.jpg" alt="绘制流程函数调用图"></p>
@@ -423,7 +424,7 @@
 <li>不重写：View这个类交给系统默认的处理</li>
 <li>重写：如果View类的默认处理不满足我们的要求，我们就重写onMeasure函数</li>
 </ul>
-<p><code>wrap_content</code>或者是<code>match_parent</code>设置并没有指定真正的大小，可是我们绘制到屏幕上的View必须是要有具体的宽高，假如我们需要自顶一个正方形View这个时候必须对</p>
+<p><code>wrap_content</code>或者是<code>match_parent</code>设置并没有指定真正的大小，可是我们绘制到屏幕上的View必须是要有具体的宽高，假如我们需要自定义一个正方形View这个时候必须对</p>
 <p>protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){ … }</p>
 <p>进行重写。</p>
 <p>1和2就省略了，从第三步开始。</p>
@@ -730,16 +731,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onLayout</span><span class="params">(<span class="keyword">boolean</span> changed, <span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = getChildCount();</span><br><span class="line">        <span class="comment">//记录当前的高度位置</span></span><br><span class="line">        <span class="keyword">int</span> curHeight = t;</span><br><span class="line">        <span class="comment">//将子View逐个摆放</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            View child = getChildAt(i);</span><br><span class="line">            <span class="keyword">int</span> height = child.getMeasuredHeight();</span><br><span class="line">            <span class="keyword">int</span> width = child.getMeasuredWidth();</span><br><span class="line">            <span class="comment">//摆放子View，参数分别是子View矩形区域的左、上、右、下边</span></span><br><span class="line">            child.layout(l, curHeight, l + width, curHeight + height);</span><br><span class="line">            curHeight += height;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>参看文章：</p>
 <p><a href="https://developer.android.com/guide/topics/ui/custom-components" target="_blank" rel="noopener">Developers</a></p>
-<p><a href="https://www.jianshu.com/p/c84693096e41" target="_blank" rel="noopener">自定义View，有这一篇就够了</a></p>
 <p><a href="https://juejin.im/post/599d2b2e518825242238d4f6" target="_blank" rel="noopener">自定义view总结</a></p>
 <p><a href="https://www.jianshu.com/p/bcae9ec222e6" target="_blank" rel="noopener">自定义View之总结</a></p>
+<p><a href="https://www.jianshu.com/p/c84693096e41" target="_blank" rel="noopener">自定义View，有这一篇就够了</a></p>
 <p><a href="https://blog.csdn.net/cjm2484836553/article/details/71024436" target="_blank" rel="noopener">自定义View（三）—自定义View整个流程的梳理与总结 - 李诗雨</a></p>
 <p>引申：</p>
+<p><a href="http://www.gcssloop.com/#blog" target="_blank" rel="noopener">GcsSloop</a></p>
+<p><a href="https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Advance/%5B01%5DCustomViewProcess.md" target="_blank" rel="noopener">自定义View分类与流程</a></p>
 <p><a href="http://blog.csdn.net/lmj623565791/article/details/24300125" target="_blank" rel="noopener">Android 自定义View (二) 进阶 - Hongyang)</a></p>
 <p><a href="https://medium.com/@romandanylyk96/android-draw-a-custom-view-ef79fe2ff54b" target="_blank" rel="noopener">Android: draw a custom view - Roman Danylyk (Medium)</a></p>
 <p><a href="http://hencoder.com/ui-1-1/" target="_blank" rel="noopener">HenCoder Android 开发进阶: 自定义 View 1-1 绘制基础</a></p>
-<p><a href="https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Advance/%5B01%5DCustomViewProcess.md" target="_blank" rel="noopener">自定义View分类与流程</a></p>
-<p><a href="http://www.gcssloop.com/#blog" target="_blank" rel="noopener">GcsSloop</a></p>
 <p><a href="https://www.jianshu.com/p/08be3c08c576" target="_blank" rel="noopener">深度解析View构造函数中的参数defStyleAttr</a></p>
 <p><a href="https://blog.csdn.net/lue2009/article/details/45692009" target="_blank" rel="noopener">View的生命周期方法和Activity生命周期方法关系</a></p>
 
@@ -796,8 +797,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/27/Interview-Resources/" rel="next" title="Interview Resources">
-                <i class="fa fa-chevron-left"></i> Interview Resources
+              <a href="/2018/03/27/Interview-Resources/" rel="next" title="(Reproduce) Interview Resources">
+                <i class="fa fa-chevron-left"></i> (Reproduce) Interview Resources
               </a>
             
           </div>
@@ -806,8 +807,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/29/JavaScript-Basic-Introduction/" rel="prev" title="JavaScript Basic Introduction">
-                JavaScript Basic Introduction <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/29/JavaScript-Basic-Introduction/" rel="prev" title="(Repost) JavaScript Basic Introduction">
+                (Repost) JavaScript Basic Introduction <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -887,7 +888,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -900,7 +901,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
