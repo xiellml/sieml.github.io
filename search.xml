@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Cookie Basic Introduction]]></title>
+    <url>%2F2018%2F04%2F27%2FCookie-Basic-Introduction%2F</url>
+    <content type="text"><![CDATA[服务器生成cookie，以键值对Set-Cookie:k1=v1;k2=v2[…][;expires=DATA][;domain=DOMAIN][;path=PATH][;secure]（注意secure仅用于https,只是一个key标记，没有value值）发送给客户端， 以便下次使用时服务器会认识客户端（同一个人），就不需要再次发送验证请求了（譬如登录）。 客户端保存上次从服务器获得的cookie, 下次请求就将其所需信息带上到header中给Server验证 参考：https://www.cnblogs.com/zhujiabin/p/6207913.htmlhttp://www.360doc.com/content/17/0224/11/6695445_631622883.shtmlhttps://bbs.csdn.net/topics/391934186]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[NodeJs and Hexo Theme]]></title>
+    <url>%2F2018%2F04%2F27%2FNodeJs-and-Hexo-Theme%2F</url>
+    <content type="text"><![CDATA[Nodejs: an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side. Swig: A simple, powerful, and extendable JavaScript Template Engine模板引擎：中间件，使用户界面与业务数据（内容）分离而产生的，生成特定格式的文档（如HTML） Grulp: an open-source JavaScript toolkit, used as a streaming build system in front-end web development.使用： https://www.cnblogs.com/Tom-yi/p/8036730.html Deno js框架： 运行于v8, 使用了js/py/c/c++/js(deno1还用了golang)等语言，工具构建使用的是depot_tools，Ninja ejs:（写一个自己的主题）http://www.showonne.com/(http://www.showonne.com/2016/07/27/%E5%86%99%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84Hexo%E4%B8%BB%E9%A2%98/)（如何写一个自己的主题）https://www.jianshu.com/p/a142eb105279（从零开始制作 Hexo 主题）http://www.ahonn.me/2016/12/15/create-a-hexo-theme-from-scratch/(美化NeXT主题)https://www.jianshu.com/p/f054333ac9e6 swig（nodejs模板引擎）:(注意：与Simplified Wrapper and Interface Generator有所区别，指和c/c++跟任何脚本语言相集成。当你有一个C/C++代码库需要被多种语言调用时，这将是个非常不错的选择。http://wiki.jikexueyuan.com/project/interpy-zh/c_extensions/swig.html)!!!(Hexo模板主题开发 入门念叨)http://www.zzfly.net/hexo-theme/(Hexo 主题制作指南)http://www.360doc.com/content/16/0913/16/33651124_590545274.shtml 手动编写博客和样式：(/index.html + Cayman theme )https://github.com/jasonlong/cayman-theme 0-1. github pages(http://wiki.jikexueyuan.com/project/github-pages-basics/github-page.html) GitHub Pages 是什么GitHub Pages 是通过我们网站托管和发布的公开静态网页。 你可以通过 Automatic Page Generator 在线创建和发布 GitHub Pages。如果你更喜欢本地操作，你可以使用 Mac 或者 Windows 平台的 GitHub App，或者使用 命令行。 Pages 是通过 HTTP 服务的，不是 HTTPS，所以你不应该使用它处理敏感的事务，像发送密码或者信用卡号码。 警告：GitHub Pages 网站是在互联网上公开的，即使它们所在的库是私有的。如果你有敏感的数据在 Page 库，你应该在发布之前删除它。 想要获取更多信息，可以查看 Github Pages 网页，或者这里的 相关帮助文档。 0-2. 了解githubPages+hexo搭建博客的原理(https://blog.csdn.net/sunshine940326/article/details/57413678)]]></content>
+      <tags>
+        <tag>script</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Module Name means What on the MVP]]></title>
+    <url>%2F2018%2F04%2F27%2FModule-Name-means-What-on-the-MVP%2F</url>
+    <content type="text"><![CDATA[presenter(发出命令态): 中间者-对接V和P ​ 操作(对数据的动作) + 修饰词(状态/时机/用户操作行为) + 宾语(UI组件) view(结果呈现态)：视图-响应用户行为，呈现对应结果画面 ​ 操作(对数据的动作) + 结果(操作的结果) ​ 或者，修饰词过去式(状态/时机/用户操作行为) + 宾语(UI组件) ​ 或者，set/lay + 宾语(组件/数据对象&lt;常使用在init初始化时&gt;) model(操作逻辑态): 处理员-分离出网络，磁盘等数据读写操作并提供接口将结果反馈给P层 ​ 操作(对数据的动作) + 宾语(某个数据实体/封装对象)+[from/on/by/ + 数据对象提供源] 延伸概念： 业务逻辑：定义输入输出规则，走预定的流程 ​ DAO :Data Access Objects属于业务逻辑层，但是是指的专门访问数据的逻辑接口]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Bounce View with Multi-gesture]]></title>
+    <url>%2F2018%2F04%2F27%2FBounce-View-with-Multi-gesture%2F</url>
+    <content type="text"><![CDATA[找了些demo，大都能实现回弹效果，但多手势可能部分不支持或者不够完善： OverScroll-Everywhere ​ 回弹和惯性越界 视图类类似果冻scrollscale 支持多点multigesture SmoothRefreshLayout 视图类类似果冻scrollscale 拉伸回弹overscroll 手势刷新refresh 不是通过多点触控实multigesture [PullRefreshLayout][https://github.com/genius158/PullRefreshLayout] 同SmoothRefreshLayout，但是是拦截了多点触控实现multigesture SmartRefreshLayout 同SmoothRefreshLayout，侧重刷新炫酷效果，可能不是通过多点触控实multigesture overscroll-decor和OverScrollView overscroll-decor所有视图的回弹&amp;不支持多点 OverScrollView支持多点 OverScroll-Everywhere这个比较好用的，可以学习一下多手势事件流程，完！]]></content>
+      <tags>
+        <tag>views</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Front-end & Back-end Basic Introduction]]></title>
+    <url>%2F2018%2F04%2F26%2FFront-end-Back-end-Basic-Introduction%2F</url>
+    <content type="text"><![CDATA[相关术语：业务逻辑： 定义输入输出规则，走预定的流程。 DAO :（Data Access Objects）属于业务逻辑层，但是是指的专门访问数据的逻辑接口 模板引擎： ​ 中间件，使用户界面与业务数据（内容）分离而产生的，生成特定格式的文档（如HTML） 前端： Nodejs: an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side. Swig: A simple, powerful, and extendable JavaScript Template Engine Grulp: an open-source JavaScript toolkit, used as a streaming build system in front-end web development.使用介绍 参考资料： 如何理解业务逻辑 DAO层架构的小总结]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[(Repost) Linux train route]]></title>
     <url>%2F2018%2F04%2F02%2FLinux-train-route%2F</url>
     <content type="text"><![CDATA[来自这 Linux 学习路线这是一幅路线图 不过需要说明的是，第五项驱动开发和第六项嵌入式系统开发是并列的，也就是说，学习完内核之后，你可以选择从事不同的领域，当然嵌入式开发有时会包含驱动开发。 还有就是嵌入式开发包括硬件，软件和系统开发，假如只做硬件的话，你没有必要按照上述路线进行，系统级开发的话，前面的是必备。 熟悉 Linux 系统，基本命令 安装 Linux 系统，学会基本操作，熟悉文件系统，shell 脚本以及常用命令。 了解程序开发过程 搭建开发环境，了解 Linux 上程序开发过程。 学会使用文本编辑工具 Vim，编译工具 gcc, as, 连接工具 ld, 调试工具 gdb， make 工具，会写 makefile。 用 C 语言实现并编译自己的测试程序。 尝试系统编程 试着在 Linux 上用 C 语言进行系统编程， 其中需要调用 Linux 系统库函数 （API）。 例如，实现一个需要进行网络通信、操作文件的多线程/进程程序。 以此深入了解 Linux 系统运行机制。 学习内核 上面学的差不多了，感兴趣的同学可以接着学习 Linux 内核。 Linux 内核模块如下图 这一部分内容比较深，能把它学透的基本就是大牛了，写个 OS 就不在话下了。 驱动开发 从这里开始，就不是必须的了。 有兴趣的朋友可以深入学习。 但是学习驱动开发无疑要把前面的都要学好。 嵌入式系统开发 学好 Linux 是嵌入式系统开发的基础。 嵌入式开发包括很多方向，有硬件、软件，以及系统级别。 硬件要学单片机，ARM、MIPS，DSP 等各种 MCU，Verilog， RTL， 具体就不多说了，跟 Linux 关系不太大。 软件的话，需要了解交叉编译，以及嵌入式环境下 C 语言的特殊用法，例如 volatile、 位操作、寄存器操作、大小端、程序跳转等。 系统级，要了解 Linux 内核裁剪、移植、编译、调试，还有 Bootloader 、设备驱动等。]]></content>
